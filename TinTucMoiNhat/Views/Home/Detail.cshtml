@@ -1,0 +1,92 @@
+﻿@model TinTucMoiNhat.Models.news
+
+@{
+    ViewBag.Title = Model.name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.url = "http://tintucmoinhat.vn/" + Config.getCatName(Model.cat_id) + "/" + Config.unicodeToNoMark(Model.name) + "-" + Model.id;
+}
+@section metatags {
+    <meta name="description" content="@Html.Raw(ViewBag.des)">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="fb:app_id" content="1930351307185969" />
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="Chi tiết tin tức">
+    <meta property="og:url" content="@ViewBag.url">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="@Html.Raw(ViewBag.des)">
+    <meta property="og:image" itemprop="thumbnailUrl" content="@Model.image">
+}
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1930351307185969";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+<div class="container">
+    <div class="row">
+        <div class=" col-sm-12 col-md-10 col-lg-6">
+            <div class="row">
+                <div class="leftbar_content">
+                    <h1>@Model.name</h1>                    
+                    <p><span class="block_timer left txt_666">Ngày @Model.date_time.Value.Day tháng @Model.date_time.Value.Month năm @Model.date_time.Value.Year @Model.time</span></p>
+                    <p>@Html.Raw(Model.full_content)</p>
+                    <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
+                    <p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>
+                    <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-2 col-lg-2">
+            <div class="row">
+                <div class="middlebar_content">
+                    <h2 class="yellow_bg">Tin liên quan</h2>
+                    <div class="middlebar_content_inner wow fadeInUp">
+                        <ul class="middlebar_nav">
+                            @foreach (var item in ViewBag.news)
+                            {
+                                var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="row">
+                <div class="rightbar_content">
+                    <div class="single_blog_sidebar wow fadeInUp">
+                        <h2>Quảng cáo</h2>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- right banner -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-6575239088642506"
+                             data-ad-slot="8243327678"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                    @*<div class="single_blog_sidebar wow fadeInUp">
+                        <h2>Đọc Nhiều Nhất</h2>
+                        <ul class="middlebar_nav wow">
+                            @foreach (var item in ViewBag.ppl)
+                            {
+                                var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                            }
+                        </ul>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
