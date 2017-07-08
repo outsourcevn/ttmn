@@ -23,6 +23,11 @@ namespace TinTucMoiNhat
                 new { controller = "Home", action = "Index", catname = UrlParameter.Optional, cat_id = UrlParameter.Optional, pg = UrlParameter.Optional }
             );
             routes.MapRoute(
+                "fanpage",
+                "fanpage/{catname}-{page_id}/{pg}",
+                new { controller = "Home", action = "Fanpage", catname = UrlParameter.Optional, page_id = UrlParameter.Optional, pg = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

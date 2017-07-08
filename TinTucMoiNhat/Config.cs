@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-
+using TinTucMoiNhat.Models;
+using System.Linq;
 namespace TinTucMoiNhat
 {
     public class Config
     {
         public static bool isCrawl = false;
+        public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {
             DateTime d1;
@@ -25,6 +27,31 @@ namespace TinTucMoiNhat
             }
             //d1 = DateTime.Now;
             //return d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
+        }
+        public static long convertToLongType(string d)
+        {
+            DateTime d1;
+            try
+            {
+                d1 = DateTime.Parse(d);//ToUniversalTime();
+                return d1.Ticks;
+            }
+            catch (Exception ex)
+            {
+                d1 = DateTime.Now;
+                return d1.Ticks;
+            }
+        }
+        public static DateTime convertDateTime(string val)
+        {
+            try
+            {
+                return DateTime.Parse(val);
+            }
+            catch (Exception ex)
+            {
+                return DateTime.Now;
+            }
         }
         public static string toUTCTime(string d)
         {
@@ -159,6 +186,16 @@ namespace TinTucMoiNhat
             }
             return val;
         }
+        public static string getFanpageName(string page_id){
+            try{
+                if (page_id == "") return "all";
+                string p = db.pages.Where(o => o.page_id == page_id).FirstOrDefault().name;
+                return p;
+            }catch
+            {
+                return "";
+            }
+        }
         public static string getHost(string link)
         {
             try
@@ -199,6 +236,12 @@ namespace TinTucMoiNhat
             {
                 return "";
             }
+        }
+        public static string embededPost(string url, string id, string message, string domain, string domainname, string createtime)
+        {
+            string temp = "";
+            temp = "<div class=\"fb-post\" data-href=\"" + url + id + "\" data-width=\"500\"><div class=\"fb-xfbml-parse-ignore\"><blockquote cite=\"" + url + id + "\"><p>" + message + "</p>Posted by <a href=\"" + domain + "\">" + domainname + "</a> on&nbsp;<a href==\"" + url + id + "\">" + createtime + "</a></blockquote></div></div>";
+            return temp;
         }
     }
     

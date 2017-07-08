@@ -3,6 +3,19 @@
 @{
     ViewBag.Title = ViewBag.catfullname;
 }
+@section metatags {
+    <meta name="description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname">
+    <meta name="keywords" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="fb:app_id" content="1930351307185969" />
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="tin tức">
+    <meta property="og:url" content="http://tintucmoinhat.vn/@ViewBag.catname-@ViewBag.cat_id/@ViewBag.pg">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname">
+    <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/content/images/tin.png">
+}
 <div class="container">
     <div class="row">
         <div class=" col-sm-12 col-md-6 col-lg-6">

@@ -12,7 +12,7 @@ namespace TinTucMoiNhat.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class tintucmoinhatEntities : DbContext
     {
         public tintucmoinhatEntities()
@@ -26,5 +26,7 @@ namespace TinTucMoiNhat.Models
         }
     
         public virtual DbSet<news> news { get; set; }
+        public virtual DbSet<page> pages { get; set; }
+        public virtual DbSet<post> posts { get; set; }
     }
 }

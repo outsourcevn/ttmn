@@ -1,49 +1,58 @@
-﻿@model TinTucMoiNhat.Models.news
-
+﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.post>
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = Model.name;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.url = "http://tintucmoinhat.vn/" + Config.getCatName(Model.cat_id) + "/" + Config.unicodeToNoMark(Model.name) + "-" + Model.id;
+    ViewBag.Title = ViewBag.catfullname;
+    if (ViewBag.catfullname == "all") {ViewBag.Title = "Tin tức facebook";}
 }
 @section metatags {
-    <meta name="description" content="@Html.Raw(ViewBag.des)">
+    <meta name="description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
     <meta property="fb:app_id" content="1930351307185969" />
     <meta property="og:locale" content="vi_VN">
     <meta property="og:type" content="Chi tiết tin tức">
-    <meta property="og:url" content="@ViewBag.url">
+    <meta property="og:url" content="http://tintucmoinhat.vn/fanpage/@ViewBag.catname-@ViewBag.page_id/@ViewBag.pg">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="@Html.Raw(ViewBag.des)">
-    <meta property="og:image" itemprop="thumbnailUrl" content="@Model.image">
+    <meta property="og:description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname">
+    <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/content/images/fb.png">
 }
-
 <div class="container">
     <div class="row">
-        <div class=" col-sm-12 col-md-10 col-lg-6">
+        <div class=" col-sm-12 col-md-6 col-lg-6">
             <div class="row">
                 <div class="leftbar_content">
-                    <h1>@Model.name</h1>                    
-                    <p><span class="block_timer left txt_666">Ngày @Model.date_time.Value.Day tháng @Model.date_time.Value.Month năm @Model.date_time.Value.Year @Model.time</span></p>
-                    <p>@Html.Raw(Model.full_content)</p>
-                    <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
-                    <p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>
-                    <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
+                    <h1>@ViewBag.Title</h1>
+                    @foreach (var item in Model)
+                    {
+                        @Html.Raw(TinTucMoiNhat.Config.embededPost(@item.url, @item.post_id, @item.message, @item.domain, @item.domain_name, @item.create_time))
+                    }
+                    <div class="stuffpost_paginatinonarea wow slideInLeft">
+                        <ul class="newstuff_pagnav">
+                            @*<li><a class="active_page" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>*@
+                            @for (int pg = 1; pg < Model.PageCount; pg++)
+                            {
+                                <li><a href="/fanpage/@ViewBag.catname-@ViewBag.page_id/@pg">@pg</a></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-2 col-lg-2">
             <div class="row">
                 <div class="middlebar_content">
-                    <h2 class="yellow_bg">Tin liên quan</h2>
+                    <h2 class="yellow_bg">Fanpage</h2>
                     <div class="middlebar_content_inner wow fadeInUp">
                         <ul class="middlebar_nav">
                             @foreach (var item in ViewBag.news)
                             {
-                                var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
-                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                                var link = "/fanpage/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.page_id+"/1";
+                                <li>@*<a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a>*@<a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                         </ul>
                     </div>
@@ -62,7 +71,7 @@
                              data-ad-client="ca-pub-6575239088642506"
                              data-ad-slot="8243327678"></ins>
                         <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
+                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
                     </div>
                     @*<div class="single_blog_sidebar wow fadeInUp">
@@ -75,10 +84,9 @@
                             }
                         </ul>
                     </div>*@
+                   
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-

@@ -27,6 +27,15 @@
     @*<div id="preloader">
         <div id="status">&nbsp;</div>
     </div>*@
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1930351307185969";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <header id="header">
         <div class="container">
@@ -41,7 +50,9 @@
                             <li class=""><a href="/the-gioi-1/1">Thế giới</a></li>
                             <li class=""><a href="/kinh-doanh-2/1">Kinh doanh</a></li>
                             <li class=""><a href="/giai-tri-3/1">Giải trí</a></li>
-                            <li class=""><a href="/the-thao-4/1">Thể thao</a></li>                            
+                            <li class=""><a href="/the-thao-4/1">Thể thao</a></li>  
+                            <li class=""><a href="/fanpage/all-0/1">Tin tức facebook</a></li>  
+                            @*<li><div class="fb-like" data-href="http://tintucmoinhat.vn" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></li>*@                         
                         </ul>
                     </div>
                 </div>
@@ -61,7 +72,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer_inner">
-                        <p class="pull-left">&copy; @DateTime.Now.Year - Tin tức mới nhất</p>
+                        <p class="pull-left">&copy; @DateTime.Now.Year - Tin tức mới nhất &nbsp;<div class="fb-like" data-href="http://tintucmoinhat.vn" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></p>
                         <p class="pull-right">vnnvh80@gmail.com - 0979776427</p>
                     </div>
                 </div>

@@ -24,8 +24,41 @@
           <Property Name="status" Type="int" />
           <Property Name="loads" Type="int" />
         </EntityType>
+        <EntityType Name="pages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="domain" Type="nvarchar" MaxLength="150" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="page_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="cat_id" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_id" Type="int" />
+          <Property Name="url" Type="nvarchar" MaxLength="152" />
+          <Property Name="post_id" Type="nvarchar" MaxLength="95" />
+          <Property Name="message" Type="ntext" />
+          <Property Name="domain" Type="nvarchar" MaxLength="150" />
+          <Property Name="domain_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="create_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_post" Type="datetime" />
+          <Property Name="date_id" Type="int" />
+          <Property Name="page_id" Type="nvarchar" MaxLength="152" />
+          <Property Name="link" Type="nvarchar" MaxLength="2451" />
+          <Property Name="image" Type="nvarchar" MaxLength="651" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="551" />
+          <Property Name="date_long" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pages" EntityType="Self.pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -52,7 +85,40 @@
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="news" EntityType="Self.news" />
+          <EntitySet Name="pages" EntityType="tintucmoinhatModel.page" />
+          <EntitySet Name="posts" EntityType="tintucmoinhatModel.post" />
         </EntityContainer>
+        <EntityType Name="page">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="domain" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="page_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Name="post_id" Type="String" MaxLength="95" FixedLength="false" Unicode="true" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="domain" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="domain_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="create_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_post" Type="DateTime" Precision="3" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="page_id" Type="String" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="2451" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="651" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
+          <Property Name="date_long" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -76,6 +142,39 @@
                 <ScalarProperty Name="date_id" ColumnName="date_id" />
                 <ScalarProperty Name="pdf" ColumnName="pdf" />
                 <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pages">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.page">
+              <MappingFragment StoreEntitySet="pages">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="page_id" ColumnName="page_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.post">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="date_long" ColumnName="date_long" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="page_id" ColumnName="page_id" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="date_post" ColumnName="date_post" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="domain_name" ColumnName="domain_name" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
