@@ -25,10 +25,11 @@
             <div class="row">
                 <div class="leftbar_content">
                     <h1>@Model.name</h1>                    
-                    <p><span class="block_timer left txt_666">Ngày @Model.date_time.Value.Day tháng @Model.date_time.Value.Month năm @Model.date_time.Value.Year @Model.time</span></p>
+                    <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
                     <p>@Html.Raw(Model.full_content)</p>
                     <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
-                    <p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>
+                    @if (Model.pdf != null)
+                    {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
                     <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                     <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
                 </div>

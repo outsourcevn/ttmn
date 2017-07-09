@@ -16,6 +16,8 @@ using Facebook;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Boilerpipe;
+using Boilerpipe.Net.Extractors;
 namespace TinTucMoiNhat.Controllers
 {
     public class HomeController : Controller
@@ -148,7 +150,7 @@ namespace TinTucMoiNhat.Controllers
                                 {
                                     link = link.Substring(link.IndexOf("&url=") + 5);
                                 }
-                                if (link.Contains("bbc.com") || link.Contains("rfa.org") || link.Contains("vtimes.com.au") || link.Contains("kenh14.vn")) continue;
+                                if (link.Contains("bbc.com") || link.Contains("rfa.org") || link.Contains("vtimes.com.au")) continue;//link.Contains("kenh14.vn") || link.Contains("tuoitre.vn")
                                 RSSSubNode = RSSNode.SelectSingleNode("description");
                                 string desc = RSSSubNode != null ? RSSSubNode.InnerText : "";
 
@@ -193,38 +195,7 @@ namespace TinTucMoiNhat.Controllers
 
                                     }
                                 }
-                                //RSSSubNode = RSSNode.SelectSingleNode("maindomain");
-                                //string maindomain = RSSSubNode != null ? RSSSubNode.InnerText : "";
-
-                                //RSSSubNode = RSSNode.SelectSingleNode("catid");
-                                //string catid = RSSSubNode != null ? RSSSubNode.InnerText : "";
-                                //string all = title + " " + desc;
-                                //for (int l = 0; l < stopword.Length; l++)
-                                //{
-                                //    all = all.Replace(stopword[l], "");
-                                //}
-                                //string state1 = "";
-                                //string capital1 = "";
-                                //string largestcity1 = "";
-                                //for (int j = 0; j < States.Count; j++)
-                                //{
-                                //    state1 = "";
-                                //    capital1 = "";
-                                //    largestcity1 = "";
-                                //    if (all.Contains(States[j].state))
-                                //    {
-                                //        state1 = States[j].state;
-                                //    }
-                                //    if (state1 != "" && all.Contains(States[j].capital))
-                                //    {
-                                //        capital1 = States[j].capital;
-                                //    }
-                                //    if (state1 != "" && all.Contains(States[j].largestcity))
-                                //    {
-                                //        largestcity1 = States[j].largestcity;
-                                //    }
-                                //    if (state1 != "") break;
-                                //}
+                                
                                 if (title != null && !title.Equals(""))// && state1 != ""
                                 {
                                     link = link.Trim();
@@ -238,9 +209,9 @@ namespace TinTucMoiNhat.Controllers
                                         var any = db.news.Any(o => o.date_id == datetimeid && o.name == title && o.link == link);
                                         if (!any)
                                         {
-                                            Uri urldomain = new Uri(link);
-                                            string pdf = Config.unicodeToNoMark(title) + ".pdf";
-                                            savePdf(link, pdf, urldomain.Host);
+                                            //Uri urldomain = new Uri(link);
+                                            //string pdf = Config.unicodeToNoMark(title) + ".pdf";
+                                            //savePdf(link, pdf, urldomain.Host);
                                             string full_content = "";
                                             try {
                                                 Reader reader = new Reader();
@@ -266,6 +237,15 @@ namespace TinTucMoiNhat.Controllers
                                             }catch(Exception ex222){
 
                                             }
+                                            if (full_content == "") { full_content = getAllContentByAi3(link); }
+                                            try {
+                                                if (image == "" || link.Contains("soha.vn") || link.Contains("zing.vn"))
+                                                {
+                                                    image = getImageFromAllContent(link);
+                                                }
+                                            }catch(Exception images){
+
+                                            }
                                             news n = new news();
                                             n.date_id = datetimeid;
                                             n.date_time = fdate;
@@ -279,9 +259,9 @@ namespace TinTucMoiNhat.Controllers
                                             n.time = fdate.Value.TimeOfDay;
                                             n.status = 0;
                                             n.loads = 1;
-                                            string strDay = DateTime.Now.ToString("yyyyMMdd");
-                                            string fullPath = "/Files/" + strDay + "/" + pdf;
-                                            n.pdf = fullPath;
+                                            //string strDay = DateTime.Now.ToString("yyyyMMdd");
+                                            //string fullPath = "/Files/" + strDay + "/" + pdf;
+                                            n.pdf = null;
                                             db.news.Add(n);
                                             db.SaveChanges();
 
@@ -318,6 +298,78 @@ namespace TinTucMoiNhat.Controllers
             }
             Config.isCrawl = false;
             return "Done";
+        }
+        public string getAllContentByAi3(string link)
+        {
+            try { 
+                String url = link;
+                string allImage = "";
+                String page = String.Empty;
+                WebRequest request = WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+                page = streamReader.ReadToEnd();
+                string pattern = @"<(img)\b[^>]*>";
+                Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                MatchCollection matches = rgx.Matches(page);
+
+                for (int i = 0, l = matches.Count; i < l; i++)
+                {
+
+                    allImage += matches[i].Value;
+                }
+                string text = CommonExtractors.ArticleExtractor.GetText(page);
+                return text + allImage;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        public string crawlPdf()
+        {
+            if (Config.isCrawlPdf) return "Crawling";
+            try
+            {
+              Config.isCrawlPdf = true;
+              int datetimeid = Config.datetimeidByDay(-1);
+              var p = (from q in db.news where q.date_id>=datetimeid && q.pdf == null select q).ToList();
+              for (int j = 0; j < p.Count; j++)
+              {
+                  string link = p[j].link;
+                  Uri urldomain = new Uri(link);
+                  string pdf = Config.unicodeToNoMark(p[j].name) + ".pdf";
+                  savePdf(link, pdf, urldomain.Host);
+                  string strDay = DateTime.Now.ToString("yyyyMMdd");
+                  string fullPath = "/Files/" + strDay + "/" + pdf;
+                  db.Database.ExecuteSqlCommand("update news set pdf=N'" + fullPath + "' where id=" + p[j].id);
+              }
+                
+            } catch(Exception pdf){
+
+            }
+            Config.isCrawlPdf = false;
+            return "Done";
+        }
+        public string getImageFromAllContent(string link)
+        {
+            try
+            {
+                String page = String.Empty;
+                WebRequest request = WebRequest.Create(link);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+                page = streamReader.ReadToEnd();
+                string pattern = @"<(img)\b[^>]*>";
+                Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                MatchCollection matches = rgx.Matches(page);
+                return getImageSrc(matches[0].Value);
+
+            }catch(Exception all){
+                return "";
+            }
         }
         public void savePdf(string url, string name, string domain)
         {
@@ -605,8 +657,8 @@ namespace TinTucMoiNhat.Controllers
 
                 XmlWriterSettings settings = null;
                 string xmlDoc = null;
-                int date_id = Config.datetimeidByDay(-3);
-                var p = (from q in db.news where q.full_content != null select q).ToList();
+                int date_id = Config.datetimeidByDay(-30);
+                var p = (from q in db.news where q.date_id>=date_id && q.full_content != null select q).OrderByDescending(o=>o.date_time).ToList();
                 settings = new XmlWriterSettings();
                 settings.Indent = true;
                 settings.Encoding = Encoding.UTF8;

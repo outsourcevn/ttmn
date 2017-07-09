@@ -10,6 +10,7 @@ namespace TinTucMoiNhat
     public class Config
     {
         public static bool isCrawl = false;
+        public static bool isCrawlPdf = false;
         public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {
