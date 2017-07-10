@@ -1,11 +1,11 @@
 ﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.post>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = ViewBag.catfullname;
-    if (ViewBag.catfullname == "all") {ViewBag.Title = "Tin tức facebook";}
+    ViewBag.Title = ViewBag.catfullname+" trang "+ ViewBag.pg;
+    if (ViewBag.catfullname == "all") { ViewBag.Title = "Tin tức facebook trang " + ViewBag.pg; }
 }
 @section metatags {
-    <meta name="description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname">
+    <meta name="description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname trang @ViewBag.pg">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="Chi tiết tin tức">
     <meta property="og:url" content="http://tintucmoinhat.vn/fanpage/@ViewBag.catname-@ViewBag.page_id/@ViewBag.pg">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname">
+    <meta property="og:description" content="tin tuc facebook, tin nong facebook, facebook nổi tiếng, @ViewBag.catfullname trang @ViewBag.pg">
     <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/content/images/fb.png">
 }
 <div class="container">
