@@ -1,19 +1,19 @@
 ﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.news>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = ViewBag.catfullname + " trang " + ViewBag.pg;
+    ViewBag.Title = "tìm kiếm từ khóa " + ViewBag.keyword + " trang " + ViewBag.pg;
 }
 @section metatags {
-    <meta name="description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname trang @ViewBag.pg">
-    <meta name="keywords" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname trang @ViewBag.pg">
+    <meta name="description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.keyword trang @ViewBag.pg">
+    <meta name="keywords" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.keyword trang @ViewBag.pg">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
     <meta property="fb:app_id" content="1930351307185969" />
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:type" content="tin tức">
-    <meta property="og:url" content="http://tintucmoinhat.vn/@ViewBag.catname-@ViewBag.cat_id/@ViewBag.pg">
+    <meta property="og:type" content="tìm kiếm tin tức">
+    <meta property="og:url" content="http://tintucmoinhat.vn/search?keyword=@ViewBag.keyword&pg=@ViewBag.pg">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname trang @ViewBag.pg">
+    <meta property="og:description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.keyword trang @ViewBag.pg ">
     <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/content/images/tin.png">
 }
 <div class="container">
@@ -21,7 +21,7 @@
         <div class=" col-sm-12 col-md-6 col-lg-6">
             <div class="row">
                 <div class="leftbar_content">
-                    <h2>@ViewBag.catfullname</h2>
+                    <h2>@ViewBag.Title</h2>
                     @foreach (var item in Model)
                     {
                         var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
@@ -31,7 +31,8 @@
                                 <div class="single_sarticle_inner">
                                     <a class="stuff_category" href="#">@TinTucMoiNhat.Config.getHost(item.link)</a>
                                     <div class="stuff_article_inner">
-                                        @if (item.pdf!=null) {<span class="stuff_date"><a href="@item.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span>}
+                                        @if (item.pdf != null)
+                                        {<span class="stuff_date"><a href="@item.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span>}
                                         <h2><a href="@link">@item.name</a></h2>
                                         <p>lúc @item.date_time</p>
                                     </div>
@@ -42,13 +43,13 @@
                     <div class="stuffpost_paginatinonarea wow slideInLeft">
                         <ul class="newstuff_pagnav">
                             @*<li><a class="active_page" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>*@
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>*@
                             @for (int pg = 1; pg < Model.PageCount; pg++)
                             {
-                                <li><a href="/@ViewBag.catname-@ViewBag.cat_id/@pg">@pg</a></li>
+                                <li><a href="/search?keyword=@ViewBag.keyword&pg=@ViewBag.pg">@pg</a></li>
                             }
                         </ul>
                     </div>
@@ -69,16 +70,16 @@
                         </ul>
                     </div>
                     @*<div class="popular_categori  wow fadeInUp">
-                        <h2 class="limeblue_bg">Most Popular Categories</h2>
-                        <ul class="poplr_catgnva">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Life &amp; Style</a></li>
-                            <li><a href="#">Games</a></li>
-                            <li><a href="#">Slider</a></li>
-                            <li><a href="#">Sports</a></li>
-                        </ul>
-                    </div>*@
+                            <h2 class="limeblue_bg">Most Popular Categories</h2>
+                            <ul class="poplr_catgnva">
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Gallery</a></li>
+                                <li><a href="#">Life &amp; Style</a></li>
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Slider</a></li>
+                                <li><a href="#">Sports</a></li>
+                            </ul>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -87,29 +88,29 @@
                 <div class="rightbar_content">
                     <div class="single_blog_sidebar wow fadeInUp">
                         <h2>Quảng cáo</h2>
-                        @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- right banner -->
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:300px;height:250px"
                              data-ad-client="ca-pub-6575239088642506"
                              data-ad-slot="8243327678"></ins>
                         <script>
                              (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>*@ 
-                        <div class="stuff_article_inner"  style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p>Dịch vụ thiết kế website, marketing online</p><p>Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                        </script>
                         @*<ul class="featured_nav">
-                            <li>
-                               <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
-                               <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
-                           </li>
-                            <li>
-                                <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
-                                <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
-                            </li>
-                            <li>
-                                <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
-                                <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
-                           </li>
-                        /</ul>*@
+                                <li>
+                                   <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
+                                   <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
+                               </li>
+                                <li>
+                                    <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
+                                    <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
+                                </li>
+                                <li>
+                                    <a class="featured_img" href="#"><img src="/Content/images/featured_img1.jpg" alt=""></a>
+                                    <div class="featured_title"> <a class="" href="#">Sed luctus semper odio aliquam rhoncus</a> </div>
+                               </li>
+                            /</ul>*@
                     </div>
                     <div class="single_blog_sidebar wow fadeInUp">
                         <h2>Đọc Nhiều Nhất</h2>
@@ -120,23 +121,23 @@
                                 <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                             @*<li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img1.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>
-                            <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img2.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>
-                            <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img1.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>
-                            <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img1.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>*@
+                                <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img2.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>
+                                <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img1.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>
+                                <li> <a href="#" class="mbar_thubnail"><img alt="" src="/Content/images/hot_img1.jpg"></a> <a href="#" class="mbar_title">Sed luctus semper odio aliquam rhoncus</a> </li>*@
                         </ul>
                     </div>
                     @*<div class="single_blog_sidebar wow fadeInUp">
-                        <h2>Popular Tags</h2>
-                        <ul class="poplr_tagnav">
-                            <li><a href="#">Arts</a></li>
-                            <li><a href="#">Games</a></li>
-                            <li><a href="#">Nature</a></li>
-                            <li><a href="#">Comedy</a></li>
-                            <li><a href="#">Sports</a></li>
-                            <li><a href="#">Tourism</a></li>
-                            <li><a href="#">Videos</a></li>
-                        </ul>
-                    </div>*@
+                            <h2>Popular Tags</h2>
+                            <ul class="poplr_tagnav">
+                                <li><a href="#">Arts</a></li>
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Nature</a></li>
+                                <li><a href="#">Comedy</a></li>
+                                <li><a href="#">Sports</a></li>
+                                <li><a href="#">Tourism</a></li>
+                                <li><a href="#">Videos</a></li>
+                            </ul>
+                        </div>*@
                 </div>
             </div>
         </div>

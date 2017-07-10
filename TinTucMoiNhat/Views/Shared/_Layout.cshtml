@@ -36,6 +36,16 @@
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1930351307185969";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        function search() {
+            if (document.getElementById("keyword").value == "") {
+                document.getElementById("keyword").focus();
+                alert("Nhập từ khóa");
+                return;
+            }
+            window.location.href = "/home/search?keyword=" + document.getElementById("keyword").value;
+        }
+    </script>
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     <header id="header">
         <div class="container">
@@ -58,8 +68,8 @@
                 </div>
             </nav>
             <form id="searchForm">
-                <input type="text" placeholder="Search...">
-                <input type="submit" value="">
+                <input type="text" placeholder="Từ khóa" id="keyword" style="border:1px solid #ffffff;width:135px;float: left;">
+                <input type="button" class="submit btn" style="background: #4cff00;border: 0 none;float: left;font-size: 10;height: 35px;width:40px;" value="Tìm" onclick="search();">
             </form>
         </div>
     </header>
