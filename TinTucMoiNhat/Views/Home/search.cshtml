@@ -49,7 +49,7 @@
                                 <li><a href="#">5</a></li>*@
                             @for (int pg = 1; pg < Model.PageCount; pg++)
                             {
-                                <li><a href="/search?keyword=@ViewBag.keyword&pg=@ViewBag.pg">@pg</a></li>
+                                <li><a href="/Home/search?keyword=@ViewBag.keyword&pg=@pg">@pg</a></li>
                             }
                         </ul>
                     </div>
