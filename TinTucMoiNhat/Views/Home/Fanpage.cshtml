@@ -34,7 +34,7 @@
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>*@
-                            @for (int pg = 1; pg < Model.PageCount; pg++)
+                            @for (int pg = 1; pg < 10; pg++)
                             {
                                 <li><a href="/fanpage/@ViewBag.catname-@ViewBag.page_id/@pg">@pg</a></li>
                             }

@@ -21,13 +21,27 @@
 
 <div class="container">
     <div class="row">
-        <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;">
+        <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
             <div class="row">
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     <h1>@Model.name</h1>                    
                     <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
                     <p>@Html.Raw(Model.full_content)</p>
                     <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-format="fluid"
+                         data-ad-layout="in-article"
+                         data-ad-client="ca-pub-6575239088642506"
+                         data-ad-slot="9905681677"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
+                        <h2>Quảng cáo</h2>
+                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Dịch vụ thiết kế website, ứng dụng di động, seo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                    </div>
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
                     <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
