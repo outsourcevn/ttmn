@@ -151,6 +151,9 @@ h2{font-family:'Varela',sans-serif}
 .custom_nav li a{font-size:12px; padding:15px 6px}
 #searchForm input[type="text"]{width:81%}
 .mbar_title{font-size:14px; margin-top:0; width:64%}
+img{
+    max-width:600px;
+}
 }
 
 @media(max-width:991px ){
@@ -166,7 +169,9 @@ h2{font-family:'Varela',sans-serif}
 .mbar_thubnail{width:22%}
 .mbar_title{width:70%}
 .leftbar_content{margin-bottom:30px}
-
+img{
+    max-width:600px;
+}
 }
 
 @media(max-width:767px ){
@@ -176,7 +181,7 @@ h2{font-family:'Varela',sans-serif}
 .mbar_thubnail > img{width:100%}
 .topadd_place > a{width:100%}
 img{
-    max-width:767px;
+    max-width:600px;
 }
 }
 
@@ -186,7 +191,7 @@ img{
 .footer_inner p{float:none; width:100%; text-align:center}
 .similarpost_nav li{margin:0 0 25px; padding:0 2%; width:100%}
 img{
-    max-width:480px;
+    max-width:420px;
 }
 }
 
@@ -194,6 +199,6 @@ img{
 .stuff_article_inner h2{line-height:1em}
 .stuff_article_inner h2 > a{font-size:16px}
 img{
-    max-width:320px;
+    max-width:310px;
 }
 }

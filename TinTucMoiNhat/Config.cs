@@ -29,6 +29,25 @@ namespace TinTucMoiNhat
             //d1 = DateTime.Now;
             //return d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
         }
+        public static string smoothTitle(string message)
+        {
+            try
+            {
+                string[] temp = message.Split(' ');
+                int i=0;
+                string val="";
+                while (val.Length < 120 && i<temp.Length)
+                {
+                    val += temp[i]+" ";
+                    i = i + 1;
+                }
+                return val.Trim();
+            }
+            catch (Exception ex)
+            {
+                return "chi-tiet";
+            }
+        }
         public static long convertToLongType(string d)
         {
             DateTime d1;
