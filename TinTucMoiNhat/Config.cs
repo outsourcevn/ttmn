@@ -216,6 +216,19 @@ namespace TinTucMoiNhat
                 return "";
             }
         }
+        public static string getChannelName(string page_id)
+        {
+            try
+            {
+                if (page_id == "") return "all";
+                string p = db.channels.Where(o => o.id_channel == page_id).FirstOrDefault().name;
+                return p;
+            }
+            catch
+            {
+                return "";
+            }
+        }
         public static string getHost(string link)
         {
             try

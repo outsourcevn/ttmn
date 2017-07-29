@@ -32,8 +32,7 @@
                     <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
                     <p>@Html.Raw(Model.full_content)</p>
                     <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- auto resize in content -->
+                    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>                    
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-6575239088642506"
@@ -41,10 +40,11 @@
                          data-ad-format="auto"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    </script>*@
+                    <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>
                     <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
                         <h2>Quảng cáo</h2>
-                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Dịch vụ thiết kế website, ứng dụng di động, seo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
                     </div>
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
@@ -82,7 +82,8 @@
                         <script>
                              (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>*@
-                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Dịch vụ thiết kế website, ứng dụng di động, seo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                        
                     </div>
                     @*<div class="single_blog_sidebar wow fadeInUp">
                         <h2>Đọc Nhiều Nhất</h2>
@@ -100,4 +101,7 @@
 
     </div>
 </div>
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('a[href^="http"]').attr('rel', 'nofollow');
+</script>
