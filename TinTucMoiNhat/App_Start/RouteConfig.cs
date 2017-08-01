@@ -33,6 +33,16 @@ namespace TinTucMoiNhat
                 new { controller = "Home", action = "FanpageDetail", title = UrlParameter.Optional, id = UrlParameter.Optional}
             );
             routes.MapRoute(
+                "youtube",
+                "youtube/{catname}-{page_id}/{pg}",
+                new { controller = "Home", action = "Youtube", catname = UrlParameter.Optional, page_id = UrlParameter.Optional, pg = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                "youtube post",
+                "youtube/video/{title}-{id}",
+                new { controller = "Home", action = "YoutubeDetail", title = UrlParameter.Optional, id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

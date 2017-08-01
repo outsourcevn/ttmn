@@ -19,7 +19,10 @@ namespace TinTucMoiNhat.Models
         public string name { get; set; }
         public string des { get; set; }
         public Nullable<System.DateTime> date_time { get; set; }
+        public Nullable<int> date_id { get; set; }
         public string channel { get; set; }
+        public Nullable<int> channel_id { get; set; }
         public string id_video { get; set; }
+        public string image { get; set; }
     }
 }

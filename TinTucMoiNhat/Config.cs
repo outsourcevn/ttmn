@@ -29,6 +29,24 @@ namespace TinTucMoiNhat
             //d1 = DateTime.Now;
             //return d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
         }
+        public static int todateTimeId(DateTime d)
+        {
+            DateTime d1;
+            try
+            {
+                d1 = d;//ToUniversalTime();
+                string val=d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
+                return int.Parse(val);
+            }
+            catch (Exception ex)
+            {
+                d1 = DateTime.Now;//ToUniversalTime();
+                string val = d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
+                return int.Parse(val);
+            }
+            //d1 = DateTime.Now;
+            //return d1.Year.ToString() + d1.Month.ToString("00") + d1.Day.ToString("00");
+        }
         public static string smoothTitle(string message)
         {
             try
@@ -216,12 +234,12 @@ namespace TinTucMoiNhat
                 return "";
             }
         }
-        public static string getChannelName(string page_id)
+        public static string getChannelName(int page_id)
         {
             try
             {
-                if (page_id == "") return "all";
-                string p = db.channels.Where(o => o.id_channel == page_id).FirstOrDefault().name;
+                if (page_id == 0) return "all";
+                string p = db.channels.Where(o => o.id == page_id).FirstOrDefault().name;
                 return p;
             }
             catch

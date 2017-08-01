@@ -12,7 +12,7 @@ namespace TinTucMoiNhat.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class tintucmoinhatEntities : DbContext
     {
         public tintucmoinhatEntities()

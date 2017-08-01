@@ -73,8 +73,11 @@
           <Property Name="name" Type="nvarchar" MaxLength="350" />
           <Property Name="des" Type="ntext" />
           <Property Name="date_time" Type="datetime" />
+          <Property Name="date_id" Type="int" />
           <Property Name="channel" Type="nvarchar" MaxLength="150" />
+          <Property Name="channel_id" Type="int" />
           <Property Name="id_video" Type="nvarchar" MaxLength="50" />
+          <Property Name="image" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="channel" EntityType="Self.channel" Schema="dbo" store:Type="Tables" />
@@ -162,8 +165,11 @@
           <Property Name="name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="date_id" Type="Int32" />
           <Property Name="channel" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="channel_id" Type="Int32" />
           <Property Name="id_video" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -237,8 +243,11 @@
           <EntitySetMapping Name="videos">
             <EntityTypeMapping TypeName="tintucmoinhatModel.video">
               <MappingFragment StoreEntitySet="videos">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="id_video" ColumnName="id_video" />
+                <ScalarProperty Name="channel_id" ColumnName="channel_id" />
                 <ScalarProperty Name="channel" ColumnName="channel" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
                 <ScalarProperty Name="date_time" ColumnName="date_time" />
                 <ScalarProperty Name="des" ColumnName="des" />
                 <ScalarProperty Name="name" ColumnName="name" />
