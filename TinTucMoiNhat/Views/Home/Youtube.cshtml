@@ -1,8 +1,8 @@
 ﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.video>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = ViewBag.catfullname + " trang " + ViewBag.pg;
-    if (ViewBag.catfullname == "all") { ViewBag.Title = "video youtube trang " + ViewBag.pg; }
+    ViewBag.Title = ViewBag.catfullname + " video trang " + ViewBag.pg;
+    if (ViewBag.catfullname == "all") { ViewBag.Title = "youtube videos trang " + ViewBag.pg; }
 }
 @section metatags {
     <meta name="description" content="youtube, youtube videos, video giải trí, xem youtube, video hay,www youtube,youtube downloader, youtube com, @ViewBag.catfullname trang @ViewBag.pg">
@@ -57,12 +57,12 @@
         <div class="col-sm-6 col-md-2 col-lg-2">
             <div class="row">
                 <div class="middlebar_content">
-                    <h2 class="yellow_bg">Fanpage</h2>
+                    <h2 class="yellow_bg">Youtube Channel</h2>
                     <div class="middlebar_content_inner wow fadeInUp">
                         <ul class="middlebar_nav">
                             @foreach (var item in ViewBag.news)
                             {
-                                var link = "/youtube/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id_channel + "/1";
+                                var link = "/youtube/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id + "/1";
                                 <li>@*<a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a>*@<a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                         </ul>

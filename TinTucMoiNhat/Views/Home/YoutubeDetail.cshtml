@@ -1,0 +1,91 @@
+﻿@model TinTucMoiNhat.Models.video
+
+@{
+    string smoothTitle = Model.name;
+    ViewBag.Title = smoothTitle + " - " + Model.channel;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.url = "http://tintucmoinhat.vn/youtube/video/" + Config.unicodeToNoMark(Model.name) + "-" + Model.id;
+}
+@section metatags {
+    <meta name="description" content="@Html.Raw(ViewBag.des)">
+    <meta name="keywords" content="">
+    <meta name="author" content="@Model.channel">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="fb:app_id" content="1930351307185969" />
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="facebook post">
+    <meta property="og:url" content="@ViewBag.url">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="@Html.Raw(ViewBag.des)">
+    <meta property="og:image" itemprop="thumbnailUrl" content="@HttpUtility.UrlDecode(@Model.image)">
+}
+
+<div class="container">
+    <div class="row">
+        <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
+            <div class="row">
+                <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
+                    @*@Html.Raw(TinTucMoiNhat.Config.embededPost(@Model.url, @Model.post_id, @Model.message, @Model.domain, @Model.domain_name, @Model.create_time))*@
+                    <h1>@ViewBag.Title</h1>
+                    <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.date_time.Value.TimeOfDay</span></p>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/@Model.id_video" frameborder="0" allowfullscreen></iframe>
+                    <p>
+                        @Html.Raw(ViewBag.des)
+                    </p>
+                    <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>
+                    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-6575239088642506"
+                             data-ad-slot="5127071673"
+                             data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>*@
+                    <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
+                        <h2>Quảng cáo</h2>
+                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                    </div>
+                    <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="row">
+                <div class="middlebar_content">
+                    <h2 class="yellow_bg">Tin liên quan</h2>
+                    <div class="middlebar_content_inner wow fadeInUp">
+                        <ul class="middlebar_nav">
+                            @foreach (var item in ViewBag.news)
+                            {
+                                var link = "/youtube/video/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-sm-6 col-md-3 col-lg-3">
+                <div class="row">
+                    <div class="rightbar_content">
+                        <div class="single_blog_sidebar wow fadeInUp">
+                            <h2>Quảng cáo</h2>
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:300px;height:250px"
+                                     data-ad-client="ca-pub-6575239088642506"
+                                     data-ad-slot="8243327678"></ins>
+                                <script>
+                                     (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Dịch vụ thiết kế website, ứng dụng di động, seo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+    </div>
+</div>
+
