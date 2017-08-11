@@ -11,6 +11,8 @@ namespace TinTucMoiNhat
     {
         public static bool isCrawl = false;
         public static bool isCrawlPdf = false;
+        public static bool isCrawlFacebook = false;
+        public static bool isCrawlYoutube = false;
         public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {
@@ -198,6 +200,24 @@ namespace TinTucMoiNhat
                 case 4:
                     val = "the-thao";
                     break;
+                case 5:
+                    val = "ha-noi";
+                    break;
+                case 6:
+                    val = "tp-sai-gon-ho-chi-minh";
+                    break;
+                case 7:
+                    val = "da-nang";
+                    break;
+                case 8:
+                    val = "hai-phong";
+                    break;
+                case 9:
+                    val = "can-tho";
+                    break;
+                case 10:
+                    val = "quang-ninh";
+                    break;
             }
             return val;
         }
@@ -220,6 +240,24 @@ namespace TinTucMoiNhat
                     break;
                 case 4:
                     val = "Thể thao";
+                    break;
+                case 5:
+                    val = "Báo Hà Nội";
+                    break;
+                case 6:
+                    val = "Báo Tp Hồ Chí Minh";
+                    break;
+                case 7:
+                    val = "Báo Đà Nẵng";
+                    break;
+                case 8:
+                    val = "Báo Hải Phòng";
+                    break;
+                case 9:
+                    val = "Báo Cần Thơ";
+                    break;
+                case 10:
+                    val = "Báo Quảng Ninh";
                     break;
             }
             return val;
@@ -293,6 +331,33 @@ namespace TinTucMoiNhat
             string temp = "";
             temp = "<div class=\"fb-post\" data-href=\"" + url + id + "\" data-width=\"500\"><div class=\"fb-xfbml-parse-ignore\"><blockquote cite=\"" + url + id + "\"><p>" + message + "</p>Posted by <a href=\"" + domain + "\">" + domainname + "</a> on&nbsp;<a href==\"" + url + id + "\">" + createtime + "</a></blockquote></div></div>";
             return temp;
+        }
+        public static void setCookie(string field, string value)
+        {
+            HttpCookie MyCookie = new HttpCookie(field);
+            MyCookie.Value = value;
+            MyCookie.Expires = DateTime.Now.AddDays(365);
+            HttpContext.Current.Response.Cookies.Add(MyCookie);
+            //Response.Cookies.Add(MyCookie);           
+        }
+        public static string getCookie(string v)
+        {
+            try
+            {
+                return HttpContext.Current.Request.Cookies[v].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+        public static void removeCookie(string field)
+        {
+            HttpCookie MyCookie = new HttpCookie(field);
+            MyCookie.Value = "1";
+            MyCookie.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(MyCookie);
+            //Response.Cookies.Add(MyCookie);           
         }
     }
     

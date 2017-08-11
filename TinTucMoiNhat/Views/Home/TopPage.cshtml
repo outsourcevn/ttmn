@@ -1,0 +1,29 @@
+﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.news>
+@using PagedList.Mvc;
+
+                @if (Model != null)
+                {
+                    var count = 0;
+                    foreach (var item in Model)
+                    {
+                        var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                        <div class="item">
+                            <div class="zoom-container">
+                                <div class="zoom-caption">
+                                    <a href="@link"></a>
+                                    <div class="zoom-caption-inner">
+                                        <span>@TinTucMoiNhat.Config.getHost(item.link)</span>
+                                        <div class="date-feat">
+                                            <i class="fa fa-clock-o"></i>
+                                            lúc @item.date_time
+                                        </div>
+                                        <h3>@item.name</h3>
+                                    </div>
+                                </div>
+                                <img src="@item.image" style="width:500px;height:500px;" />
+                            </div>
+                        </div>
+                    }
+                }
+            
+

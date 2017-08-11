@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - Tin tức mới nhất</title>
     @RenderSection("metatags", false)
+    @*<link rel="stylesheet" href="/Content/new/css/bootstrap.min.css" type="text/css">
+
+    <!-- Owl Carousel Assets -->
+    <link href="/Content/new/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <!-- <link href="owl-carousel/owl.theme.css" rel="stylesheet"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/Content/new/css/style.css">
+    <link href="/Content/new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/Content/new/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css">
+
+    <!-- jQuery and Modernizr-->
+    <script src="/Content/new/js/jquery-2.1.1.js"></script>
+
+    <!-- Core JavaScript Files -->
+    <script src="/Content/new/js/bootstrap.min.js"></script>*@
     <link rel="stylesheet" href="/Content/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Content/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/assets/css/font.css">
@@ -46,8 +63,116 @@
             window.location.href = "/home/search?keyword=" + document.getElementById("keyword").value;
         }
     </script>
-    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    @*<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>*@
     <header id="header">
+        @*<nav id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Tin tức mới nhất 24h!</strong>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline top-link link">
+                            <li><a href="/tin-nong-0/1"><i class="fa fa-home"></i> Trang chủ</a></li>
+                            <li><a href="#"><i class="fa fa-comments"></i> Liên hệ</a></li>
+                            <li><a href="#"><i class="fa fa-question-circle"></i> Hỏi đáp</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="owl-slide" class="owl-carousel">
+            <div class="item">
+                <div class="zoom-container">
+                    <div class="zoom-caption">
+                        <a href="single.html"></a>
+                        <div class="zoom-caption-inner">
+                            <span>News</span>
+                            <div class="date-feat">
+                                <i class="fa fa-clock-o"></i>
+                                26 Jan , 2016
+                                <i class="fa fa-video-camera"></i>
+                                Video
+                            </div>
+                            <h3>Video Post with Featured Image</h3>
+                        </div>
+                    </div>
+                    <img src="images/slide-2.jpg" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="zoom-container">
+                    <div class="zoom-caption">
+                        <a href="single.html"></a>
+                        <div class="zoom-caption-inner">
+                            <span>News</span>
+                            <div class="date-feat">
+                                <i class="fa fa-clock-o"></i>
+                                26 Jan , 2016
+                                <i class="fa fa-video-camera"></i>
+                                Video
+                            </div>
+                            <h3>Video Post with Featured Image</h3>
+                        </div>
+                    </div>
+                    <img src="images/slide-1.jpg" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="zoom-container">
+                    <div class="zoom-caption">
+                        <a href="single.html"></a>
+                        <div class="zoom-caption-inner">
+                            <span>News</span>
+                            <div class="date-feat">
+                                <i class="fa fa-clock-o"></i>
+                                26 Jan , 2016
+                                <i class="fa fa-video-camera"></i>
+                                Video
+                            </div>
+                            <h3>Video Post with Featured Image</h3>
+                        </div>
+                    </div>
+                    <img src="images/slide-3.jpg" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="zoom-container">
+                    <div class="zoom-caption">
+                        <a href="single.html"></a>
+                        <div class="zoom-caption-inner">
+                            <span>News</span>
+                            <div class="date-feat">
+                                <i class="fa fa-clock-o"></i>
+                                26 Jan , 2016
+                                <i class="fa fa-video-camera"></i>
+                                Video
+                            </div>
+                            <h3>Video Post with Featured Image</h3>
+                        </div>
+                    </div>
+                    <img src="images/slide-4.jpg" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="zoom-container">
+                    <div class="zoom-caption">
+                        <a href="single.html"></a>
+                        <div class="zoom-caption-inner">
+                            <span>News</span>
+                            <div class="date-feat">
+                                <i class="fa fa-clock-o"></i>
+                                26 Jan , 2016
+                                <i class="fa fa-video-camera"></i>
+                                Video
+                            </div>
+                            <h3>Video Post with Featured Image</h3>
+                        </div>
+                    </div>
+                    <img src="images/slide-5.jpg" />
+                </div>
+            </div>
+        </div>*@
         <div class="container">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
@@ -61,9 +186,22 @@
                             <li class=""><a href="/kinh-doanh-2/1">Kinh doanh</a></li>
                             <li class=""><a href="/giai-tri-3/1">Giải trí</a></li>
                             <li class=""><a href="/the-thao-4/1">Thể thao</a></li>  
-                            <li class=""><a href="/fanpage/all-0/1">Tin tức facebook</a></li>  
-                            <li class=""><a href="/youtube/all-0/1">Video giải trí</a></li>  
-                            @*<li><div class="fb-like" data-href="http://tintucmoinhat.vn" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></li>*@                         
+                            <li class="" style="background:#808080;"><a href="/fanpage/all-0/1">Tin tức facebook</a></li>  
+                            <li class="" style="background:#ff0000;"><a href="/youtube/all-0/1">Video giải trí</a></li>  
+                            <li class="dropdown" style="background:#ff006e;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Tin địa phương
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/ha-noi-5/1">Hà Nội</a></li>
+                                    <li><a href="/tp-sai-gon-ho-chi-minh-6/1">Tp Hồ Chí Minh</a></li>
+                                    <li><a href="/da-nang-7/1">Đà Nẵng</a></li>
+                                    <li><a href="/hai-phong-8/1">Hải Phòng</a></li>
+                                    <li><a href="/can-tho-9/1">Cần Thơ</a></li>
+                                    <li><a href="/quang-ninh-10/1">Quảng Ninh</a></li>
+                                </ul>
+                            </li>              
                         </ul>
                     </div>
                 </div>

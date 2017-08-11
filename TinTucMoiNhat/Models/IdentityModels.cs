@@ -29,5 +29,7 @@ namespace TinTucMoiNhat.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TinTucMoiNhat.Models.page> pages { get; set; }
     }
 }

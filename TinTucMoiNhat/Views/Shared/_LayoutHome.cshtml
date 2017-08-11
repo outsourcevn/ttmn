@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Tin tức mới nhất</title>
+    @RenderSection("metatags", false)
+    <link rel="stylesheet" href="/Content/new/css/bootstrap.min.css" type="text/css">
+
+    <!-- Owl Carousel Assets -->
+    <link href="/Content/new/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <!-- <link href="owl-carousel/owl.theme.css" rel="stylesheet"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/Content/new/css/style.css">
+    <link href="/Content/new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/Content/new/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css">
+
+    <!-- jQuery and Modernizr-->
+    <script src="/Content/new/js/jquery-2.1.1.js"></script>
+
+    <!-- Core JavaScript Files -->
+    <script src="/Content/new/js/bootstrap.min.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-102158489-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    @*<div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>*@
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1930351307185969";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        function search() {
+            if (document.getElementById("keyword").value == "") {
+                document.getElementById("keyword").focus();
+                alert("Nhập từ khóa");
+                return;
+            }
+            window.location.href = "/home/search?keyword=" + document.getElementById("keyword").value;
+        }
+    </script>
+    @*<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>*@
+    <header id="header">
+        <nav id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Tin tức mới nhất 24h!</strong>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline top-link link">
+                            <li><a href="/tin-nong-0/1"><i class="fa fa-home"></i> Trang chủ</a></li>
+                            <li><a href="#"><i class="fa fa-comments"></i> Liên hệ</a></li>
+                            <li><a href="#"><i class="fa fa-question-circle"></i> Hỏi đáp</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="owl-slide" class="owl-carousel" style="display:block;">
+            @{Html.RenderAction("TopPage");}
+        </div>
+        @*<div class="container">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                            <a class="navbar-brand" href="/tin-nong-0/1"><span>Tin Nóng</span></a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav custom_nav">
+                                <li class=""><a href="/the-gioi-1/1">Thế giới</a></li>
+                                <li class=""><a href="/kinh-doanh-2/1">Kinh doanh</a></li>
+                                <li class=""><a href="/giai-tri-3/1">Giải trí</a></li>
+                                <li class=""><a href="/the-thao-4/1">Thể thao</a></li>
+                                <li class="" style="background:#808080;"><a href="/fanpage/all-0/1">Tin tức facebook</a></li>
+                                <li class="" style="background:#ff0000;"><a href="/youtube/all-0/1">Video giải trí</a></li>
+                                <li class="dropdown" style="background:#ff006e;">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Tin địa phương
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ha-noi-5/1">Hà Nội</a></li>
+                                        <li><a href="/tp-sai-gon-ho-chi-minh-6/1">Tp Hồ Chí Minh</a></li>
+                                        <li><a href="/da-nang-7/1">Đà Nẵng</a></li>
+                                        <li><a href="/hai-phong-8/1">Hải Phòng</a></li>
+                                        <li><a href="/can-tho-9/1">Cần Thơ</a></li>
+                                        <li><a href="/quang-ninh-10/1">Quảng Ninh</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <form id="searchForm">
+                    <input type="text" placeholder="Từ khóa" id="keyword" style="border:1px solid #ffffff;width:135px;float: left;">
+                    <input type="button" class="submit btn" style="background: #4cff00;border: 0 none;float: left;font-size: 10;height: 35px;width:40px;" value="Tìm" onclick="search();">
+                </form>
+            </div>*@
+    </header>
+    <!--Navigation-->
+    <nav id="menu" class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+            <a class="navbar-brand" href="#">
+                <div class="logo"><span>Tin Tức Mới Nhất</span></div>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Tin Nóng</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thành Viên <i class="fa fa-arrow-circle-o-down"></i></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Đăng Nhập</a></li>
+                                <li><a href="#">Đăng Ký</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="/youtube/all-0/1" class="dropdown-toggle" data-toggle="dropdown">Video Giải Trí </a>
+                </li>
+                <li class="dropdown">
+                    <a href="/fanpage/all-0/1" class="dropdown-toggle" data-toggle="dropdown">Tin tức facebook </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Danh Mục<i class="fa fa-arrow-circle-o-down"></i></a>
+                    <div class="dropdown-menu" style="margin-left: -203.625px;">
+                        <div class="dropdown-inner">
+                            <ul class="list-unstyled">
+                                <li ><a href="/the-gioi-1/1">Thế giới</a></li>
+                                <li ><a href="/kinh-doanh-2/1">Kinh doanh</a></li>
+                                <li ><a href="/giai-tri-3/1">Giải trí</a></li>
+                                <li ><a href="/the-thao-4/1">Thể thao</a></li>
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li><a href="/ha-noi-5/1">Hà Nội</a></li>
+                                <li><a href="/tp-sai-gon-ho-chi-minh-6/1">Tp Hồ Chí Minh</a></li>
+                                <li><a href="/da-nang-7/1">Đà Nẵng</a></li>
+                                <li><a href="/hai-phong-8/1">Hải Phòng</a></li>
+                                <li><a href="/can-tho-9/1">Cần Thơ</a></li>
+                                <li><a href="/quang-ninh-10/1">Quảng Ninh</a></li>
+                            </ul>
+                            @*<ul class="list-unstyled">
+                                <li><a href="archive.html">Text 311</a></li>
+                                <li><a href="archive.html">Text 312</a></li>
+                                <li><a href="archive.html#">Text 313</a></li>
+                                <li><a href="archive.html#">Text 314</a></li>
+                                <li><a href="archive.html">Text 315</a></li>
+                            </ul>*@
+                        </div>
+                    </div>
+                </li>
+                @*<li><a href="#"><i class="fa fa-cubes"></i> Blocks</a></li>
+                <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>*@
+            </ul>
+            <div class="col-sm-3 col-md-3 navbar-right">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    <div id="page-content" class="index-page">
+        @RenderBody()
+    </div>
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer_inner">
+                        <p class="pull-left">&copy; @DateTime.Now.Year - Tin tức mới nhất - Ứng dụng xử lý ngôn ngữ tự nhiên trong trí tuệ nhân tạo. Tự động lấy tin từ các báo &nbsp;<div class="fb-like" data-href="http://tintucmoinhat.vn" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></p>
+                        <p class="pull-right">vnnvh80@gmail.com - 0979776427</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <!-- JS -->
+    <script src="/Content/new/owl-carousel/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-slide").owlCarousel({
+                autoPlay: 3000,
+                items: 4,
+                itemsDesktop: [1199, 4],
+                itemsDesktopSmall: [979, 3],
+                itemsTablet: [768, 2],
+                itemsMobile: [479, 1],
+                navigation: true,
+                navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+                pagination: false
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript" src="/Content/new/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/Content/new/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language: 'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language: 'fr',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+    </script>
+</body>
+</html>
