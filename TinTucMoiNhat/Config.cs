@@ -13,6 +13,7 @@ namespace TinTucMoiNhat
         public static bool isCrawlPdf = false;
         public static bool isCrawlFacebook = false;
         public static bool isCrawlYoutube = false;
+        public static bool isCrawlFacebookNews = false;
         public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {

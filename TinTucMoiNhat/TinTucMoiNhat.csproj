@@ -45,11 +45,102 @@
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis, Version=1.28.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.28.0\lib\net45\Google.Apis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.28.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.28.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.28.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.28.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.28.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.28.0\lib\net45\Google.Apis.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.28.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.28.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.YouTube.v3, Version=1.28.0.760, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.YouTube.v3.1.28.0.760\lib\net45\Google.Apis.YouTube.v3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform">
+      <HintPath>..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NuGet.Client">
+      <HintPath>..\packages\NuGet.Client.4.2.0\lib\net45\NuGet.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Commands">
+      <HintPath>..\packages\NuGet.Commands.4.2.0\lib\net45\NuGet.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Common">
+      <HintPath>..\packages\NuGet.Common.4.2.0\lib\net45\NuGet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Configuration">
+      <HintPath>..\packages\NuGet.Configuration.4.2.0\lib\net45\NuGet.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.ContentModel">
+      <HintPath>..\packages\NuGet.ContentModel.4.2.0\lib\net45\NuGet.ContentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.DependencyResolver.Core">
+      <HintPath>..\packages\NuGet.DependencyResolver.Core.4.2.0\lib\net45\NuGet.DependencyResolver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Frameworks">
+      <HintPath>..\packages\NuGet.Frameworks.4.2.0\lib\net45\NuGet.Frameworks.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.LibraryModel">
+      <HintPath>..\packages\NuGet.LibraryModel.4.2.0\lib\net45\NuGet.LibraryModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.PackageManagement">
+      <HintPath>..\packages\NuGet.PackageManagement.4.2.0\lib\net45\NuGet.PackageManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Packaging">
+      <HintPath>..\packages\NuGet.Packaging.4.2.0\lib\net45\NuGet.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Packaging.Core">
+      <HintPath>..\packages\NuGet.Packaging.Core.4.2.0\lib\net45\NuGet.Packaging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Packaging.Core.Types">
+      <HintPath>..\packages\NuGet.Packaging.Core.Types.4.2.0\lib\net45\NuGet.Packaging.Core.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.ProjectManagement">
+      <HintPath>..\packages\NuGet.ProjectManagement.4.2.0\lib\net45\NuGet.ProjectManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.ProjectModel">
+      <HintPath>..\packages\NuGet.ProjectModel.4.2.0\lib\net45\NuGet.ProjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Protocol.Core.Types">
+      <HintPath>..\packages\NuGet.Protocol.Core.Types.4.2.0\lib\net45\NuGet.Protocol.Core.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Protocol.Core.v3">
+      <HintPath>..\packages\NuGet.Protocol.Core.v3.4.2.0\lib\net45\NuGet.Protocol.Core.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Repositories">
+      <HintPath>..\packages\NuGet.Repositories.4.2.0\lib\net45\NuGet.Repositories.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Resolver">
+      <HintPath>..\packages\NuGet.Resolver.4.2.0\lib\net45\NuGet.Resolver.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.RuntimeModel">
+      <HintPath>..\packages\NuGet.RuntimeModel.4.2.0\lib\net45\NuGet.RuntimeModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Versioning">
+      <HintPath>..\packages\NuGet.Versioning.4.2.0\lib\net45\NuGet.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -75,10 +166,19 @@
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Extensions">
@@ -91,6 +191,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel">
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData">
@@ -185,9 +288,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -244,10 +344,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\pagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\channel.cs">
+      <DependentUpon>ttmn.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\news.cs">
@@ -273,6 +377,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ttmn.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\video.cs">
+      <DependentUpon>ttmn.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -306,6 +413,66 @@
     <Content Include="Content\images\singlepage_img1.jpg" />
     <Content Include="Content\images\stuff_img1.jpg" />
     <Content Include="Content\index.html" />
+    <Content Include="Content\new\archive.html" />
+    <Content Include="Content\new\contact.html" />
+    <Content Include="Content\new\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\new\css\bootstrap.min.css" />
+    <Content Include="Content\new\css\style.css" />
+    <Content Include="Content\new\font-awesome-4.4.0\css\font-awesome.css" />
+    <Content Include="Content\new\font-awesome-4.4.0\css\font-awesome.min.css" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\new\font-awesome-4.4.0\HELP-US-OUT.txt" />
+    <Content Include="Content\new\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\new\images\1.jpg" />
+    <Content Include="Content\new\images\10.jpg" />
+    <Content Include="Content\new\images\11.jpg" />
+    <Content Include="Content\new\images\12.jpg" />
+    <Content Include="Content\new\images\13.jpg" />
+    <Content Include="Content\new\images\14.jpg" />
+    <Content Include="Content\new\images\15.jpg" />
+    <Content Include="Content\new\images\2.jpg" />
+    <Content Include="Content\new\images\22.jpg" />
+    <Content Include="Content\new\images\23.jpg" />
+    <Content Include="Content\new\images\24.jpg" />
+    <Content Include="Content\new\images\3.jpg" />
+    <Content Include="Content\new\images\4.jpg" />
+    <Content Include="Content\new\images\5.jpg" />
+    <Content Include="Content\new\images\6.jpg" />
+    <Content Include="Content\new\images\7.jpg" />
+    <Content Include="Content\new\images\8.jpg" />
+    <Content Include="Content\new\images\9.jpg" />
+    <Content Include="Content\new\images\ava-1.jpg" />
+    <Content Include="Content\new\images\ava-2.png" />
+    <Content Include="Content\new\images\ava-3.jpeg" />
+    <Content Include="Content\new\images\ava-4.jpg" />
+    <Content Include="Content\new\images\banner-2.jpg" />
+    <Content Include="Content\new\images\logo.jpg" />
+    <Content Include="Content\new\images\slide-1.jpg" />
+    <Content Include="Content\new\images\slide-2.jpg" />
+    <Content Include="Content\new\images\slide-3.jpg" />
+    <Content Include="Content\new\images\slide-4.jpg" />
+    <Content Include="Content\new\images\slide-5.jpg" />
+    <Content Include="Content\new\images\title-tag.png" />
+    <Content Include="Content\new\images\title.png" />
+    <Content Include="Content\new\index.html" />
+    <Content Include="Content\new\js\bootstrap-datetimepicker.fr.js" />
+    <Content Include="Content\new\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\new\js\bootstrap-hover-dropdown.js" />
+    <Content Include="Content\new\js\bootstrap.min.js" />
+    <Content Include="Content\new\js\html5shiv.js" />
+    <Content Include="Content\new\js\jquery-2.1.1.js" />
+    <Content Include="Content\new\js\photo-gallery.js" />
+    <Content Include="Content\new\js\respond.min.js" />
+    <Content Include="Content\new\license.txt" />
+    <Content Include="Content\new\owl-carousel\AjaxLoader.gif" />
+    <Content Include="Content\new\owl-carousel\grabbing.png" />
+    <Content Include="Content\new\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\new\owl-carousel\owl.carousel.js" />
+    <Content Include="Content\new\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Content\new\owl-carousel\owl.theme.css" />
+    <Content Include="Content\new\owl-carousel\owl.transitions.css" />
+    <Content Include="Content\new\readme.txt" />
+    <Content Include="Content\new\single.html" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\pages\single.html" />
     <Content Include="favicon.ico" />
@@ -342,6 +509,41 @@
     <Content Include="Models\ttmn.edmx.diagram">
       <DependentUpon>ttmn.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\new\contact.php" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\new\font-awesome-4.4.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\animated.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\bordered-pulled.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\core.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\fixed-width.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\font-awesome.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\icons.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\larger.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\list.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\mixins.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\path.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\rotated-flipped.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\stacked.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\less\variables.less" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\font-awesome.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_animated.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_core.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_fixed-width.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_icons.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_larger.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_list.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_mixins.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_path.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_stacked.scss" />
+    <Content Include="Content\new\font-awesome-4.4.0\scss\_variables.scss" />
+    <Content Include="Content\new\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\new\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\new\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\ttmn.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -355,7 +557,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -393,6 +597,17 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Fanpage.cshtml" />
     <Content Include="Views\Home\search.cshtml" />
+    <Content Include="Views\Home\FanpageDetail.cshtml" />
+    <Content Include="Views\Home\Youtube.cshtml" />
+    <Content Include="Views\Home\YoutubeDetail.cshtml" />
+    <Content Include="Views\Shared\GenericError.cshtml" />
+    <Content Include="Views\pages\Create.cshtml" />
+    <Content Include="Views\pages\Delete.cshtml" />
+    <Content Include="Views\pages\Details.cshtml" />
+    <Content Include="Views\pages\Edit.cshtml" />
+    <Content Include="Views\pages\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\TopPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
