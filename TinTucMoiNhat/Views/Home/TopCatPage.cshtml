@@ -1,0 +1,21 @@
+﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.news>
+@using PagedList.Mvc;
+
+@if (Model != null)
+{
+    <div class="col-md-12">
+        <h6 class="yellow_bg" style="background: #09c;">@ViewBag.catfullitemname</h6>
+        <div class="middlebar_content_inner wow fadeInUp" style="background: #ffffff;">
+            <ul class="middlebar_nav">
+                @foreach (var item in Model)
+                {
+                    var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                    <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                }
+            </ul>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+    </div>
+}
+
+

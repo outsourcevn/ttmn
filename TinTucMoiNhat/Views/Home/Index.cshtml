@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = ViewBag.catfullname + " trang " + ViewBag.pg;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
 }
 @section metatags {
     <meta name="description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname trang @ViewBag.pg">
@@ -17,17 +18,51 @@
     <meta property="og:description" content="tin tuc, doc bao, bao moi, tin moi, 24h, tin nhanh, tin tuc 24h, @ViewBag.catfullname trang @ViewBag.pg">
     <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/content/images/tin.png">
 }
-<div class="container">
+<link href="/Content/new/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="/Content/new/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/Content/new/css/style.css">
+<section id="contentbody" style="padding: 15px 0 22px;">
+    <div class="container">
+        <div id="owl-slide" class="owl-carousel" style="display:block;">
+            @foreach (var item in Model)
+            {
+                var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                count++;
+                <div class="item">
+                    <div class="zoom-container">
+                        <div class="zoom-caption">
+                            <a href="@link"></a>
+                            <div class="zoom-caption-inner">
+                                <span>@TinTucMoiNhat.Config.getHost(item.link)</span>
+                                <div class="date-feat">
+                                    <i class="fa fa-clock-o"></i>
+                                    @item.date_time
+                                </div>
+                                <h4 style="color:#ffffff;">@item.name</h4>
+                            </div>
+                        </div>
+                        <img src="@item.image" style="height:300px;"/>
+                    </div>
+                </div>
+                if (count >= 10) { break; }
+            }
+        </div>
+    </div>
+</section>
+<div class="container">    
     <div class="row">
         <div class=" col-sm-12 col-md-6 col-lg-6">
             <div class="row">
                 <div class="leftbar_content">
                     <h2>@ViewBag.catfullname</h2>
+                    @{count = 0;}
                     @foreach (var item in Model)
                     {
+                        count++;
+                        if (count <= 10) { continue; }
                         var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
                         <div class="single_stuff wow fadeInDown" style="min-height:250px;">
-                            <div class="single_stuff_img"> <a href="@link"><img src="@item.image" style="max-height:350px;"></a> </div>
+                            <div class="single_stuff_img"> <a href="@link"><img src="@item.image" style="max-height:350px;width:100%;"></a> </div>
                             <div class="single_stuff_article">
                                 <div class="single_sarticle_inner">
                                     <a class="stuff_category" href="#">@TinTucMoiNhat.Config.getHost(item.link)</a>
@@ -48,6 +83,21 @@
                             }
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="leftbar_content">
+                    @for (int i = 0; i < 5; i++)
+                    {
+
+                        if (i != ViewBag.cat_id)
+                        {
+                            Html.RenderAction("TopCatPage", new { cat_id = i, no_cat_id = ViewBag.cat_id });
+                        }
+
+                    }
                 </div>
             </div>
         </div>
@@ -96,7 +146,8 @@
                                 var link = "/youtube/video/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
                                 <li>
                                     @*<div class="clearfix _5x46 _4d-l"><a class="_5pb8 _29h _303" href="@link" aria-hidden="true" tabindex="-1" target="_blank" data-ft="{&quot;tn&quot;:&quot;\u003C&quot;}"><div class="_38vo"><img class="_s0 _4ooo _5xib _5sq7 _44ma _rw img" src="@item.avatar" alt="" aria-label="@item.domain_name" role="img"></div></a><div class="_302"><span><a href="@link" target="_blank"><i class="img sp_post-plugin sx_post-plugin_favicon"></i></a></span></div><div class="_3dp _29k"><div><div class="_6a"><div class="_6a _6b" style="height:40px"></div><div class="_6a _6b"><div class="_2_79 _50f4 _50f7">@item.domain_name<span class="_56_f _5dzy _5dz_ _3twv"></span></div><a class="_39g5" href="@link" target="_blank"><abbr title="@item.create_time" data-utime="1500484582" class="timestamp"><span class="timestampContent">@item.create_time</span></abbr></a></div></div></div></div></div>*@
-                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/@item.id_video" frameborder="0" allowfullscreen></iframe>
+                                    @*<iframe width="100%" height="315" src="https://www.youtube.com/embed/@item.id_video" frameborder="0" allowfullscreen></iframe>*@
+                                    <img src="@item.image" alt="@item.name" style="width:100%;height:180px;">
                                     <a class="mbar_title" href="@link">@item.name</a>
                                 </li>
                             }
@@ -119,480 +170,3 @@
         </div>
     </div>
 </div>
-@*<div class="clearfix no-gutter">
-    <div id="main-content" class="col-md-9 fix-right">
-        <div class="gutter-7px">
-            <div class="col-sm-4">
-                @for(int i=1;i<=10){
-                    Html.RenderAction("CatPage", new { cat_id = @i });
-                }
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/4.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Music</a></a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/6.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Events</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/11.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a>,<a href="#"> Music</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/13.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-4">
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Events</a></div>
-                        <h3 class="entry-title"><a href="#">Your Tread Must be Light and Sure as Though Your Path...</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/7.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>There once was a story about a man who could turn invisible. I thought it was only a story??? until it happened to me. Ok, so here???s how it works: there???s this stuff called</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Events</a>,<a href="#"> Music</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/10.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a>,<a href="#"> Music</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/8.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#"> Music</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/14.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-4">
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a>,<a href="#"> Music</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/5.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a>,<a href="#"> Events</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/9.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/12.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-                <article>
-                    <div class="entry-header">
-                        <div class="grid-cat"><a href="#">Lifestyle</a></div>
-                        <h3 class="entry-title"><a href="#">Marshall, Will, and Holly on a Routine Expedition</a></h3>
-                        <span><i class="fa fa-heart"></i> 1,200 / <i class="fa fa-calendar"></i> 25/3/2016 / <i class="fa fa-comment-o"></i> 10 / <i class="fa fa-eye"></i> 945</span>
-                    </div>
-                    <div class="post-thumbnail-wrap"><a href="single.html"><img src="images/15.jpg" /></a></div>
-                    <div class="entry-content">
-                        <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft! And plunged them down a thousand feet below</p>
-                        <a href="single.html">More...</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-    <div id="sidebar" class="col-md-3 fix-left">
-        <!---- Start Widget ---->
-        <div class="widget wid-vid">
-            <div class="heading">
-                <h4>Videos</h4>
-            </div>
-            <div class="content">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#most">Most Plays</a></li>
-                    <li><a data-toggle="tab" href="#popular">Popular</a></li>
-                    <li><a data-toggle="tab" href="#random">Random</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="most" class="tab-pane fade in active">
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/22.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/23.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/24.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="popular" class="tab-pane fade">
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/24.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/22.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/23.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="random" class="tab-pane fade">
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/23.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/24.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post wrap-vid">
-                            <div class="zoom-container">
-                                <div class="zoom-caption">
-                                    <a href="single.html"></a>
-                                </div>
-                                <img src="images/22.jpg" />
-                            </div>
-                            <div class="wrapper">
-                                <h5 class="vid-name"><a href="#">Video's Name</a></h5>
-                                <div class="info">
-                                    <h6>By <a href="#">Kelvin</a></h6>
-                                    <span><i class="fa fa-calendar"></i>25/3/2016</span>
-                                    <span><i class="fa fa-heart"></i>1,200</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-tags">
-            <div class="heading"><h4>Search</h4></div>
-            <div class="content">
-                <form role="form" class="form-horizontal" method="post" action="">
-                    <input type="text" placeholder="Enter Search Keywords" value="" name="v_search" id="v_search" class="form-control">
-                </form>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-tags">
-            <div class="heading"><h4>Tags</h4></div>
-            <div class="content">
-                <a href="#">animals</a>
-                <a href="#">cooking</a>
-                <a href="#">countries</a>
-                <a href="#">home</a>
-                <a href="#">likes</a>
-                <a href="#">photo</a>
-                <a href="#">link</a>
-                <a href="#">video</a>
-                <a href="#">travel</a>
-                <a href="#">images</a>
-                <a href="#">love</a>
-                <a href="#">lists</a>
-                <a href="#">makeup</a>
-                <a href="#">media</a>
-                <a href="#">password</a>
-                <a href="#">pagination</a>
-                <a href="#">pictures</a>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-comment">
-            <div class="heading"><h4>Top Comments</h4></div>
-            <div class="content">
-                <div class="post">
-                    <a href="single.html">
-                        <img src="images/ava-1.jpg" class="img-circle" />
-                    </a>
-                    <div class="wrapper">
-                        <a href="#"><h5>Curabitur tincidunt porta lorem.</h5></a>
-                        <ul class="list-inline">
-                            <li><i class="fa fa-calendar"></i>25/3/2016</li>
-                            <li><i class="fa fa-thumbs-up"></i>1,200</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="post">
-                    <a href="single.html">
-                        <img src="images/ava-2.png" class="img-circle" />
-                    </a>
-                    <div class="wrapper">
-                        <a href="#"><h5>Curabitur tincidunt porta lorem.</h5></a>
-                        <ul class="list-inline">
-                            <li><i class="fa fa-calendar"></i>25/3/2016</li>
-                            <li><i class="fa fa-thumbs-up"></i>1,200</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="post">
-                    <a href="single.html">
-                        <img src="images/ava-3.jpeg" class="img-circle" />
-                    </a>
-                    <div class="wrapper">
-                        <a href="#"><h5>Curabitur tincidunt porta lorem.</h5></a>
-                        <ul class="list-inline">
-                            <li><i class="fa fa-calendar"></i>25/3/2016</li>
-                            <li><i class="fa fa-thumbs-up"></i>1,200</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="post">
-                    <a href="single.html">
-                        <img src="images/ava-4.jpg" class="img-circle" />
-                    </a>
-                    <div class="wrapper">
-                        <a href="#"><h5>Curabitur tincidunt porta lorem.</h5></a>
-                        <ul class="list-inline">
-                            <li><i class="fa fa-calendar"></i>25/3/2016</li>
-                            <li><i class="fa fa-thumbs-up"></i>1,200</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-banner">
-            <div class="content">
-                <img src="images/banner-2.jpg" class="img-responsive" />
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-categoty">
-            <div class="heading"><h4>Category</h4></div>
-            <div class="content">
-                <select class="col-md-12">
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                </select>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-calendar">
-            <div class="heading"><h4>Calendar</h4></div>
-            <div class="content">
-                <center>
-                    <form action="" role="form">
-                        <div class="">
-                            <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">                </div>
-                            <input type="hidden" id="dtp_input2" value="" /><br />
-                        </div>
-                    </form>
-                </center>
-            </div>
-        </div>
-        <!---- Start Widget ---->
-        <div class="widget wid-tweet">
-            <div class="heading"><h4>Tweet</h4></div>
-            <div class="content">
-                <div class="tweet-item">
-                    <p><i class="fa fa-twitter"></i> TLAS - Coming Soon PSD Mockup</p>
-                    <a>https://t.co/dLsNZYGVbJ</a>
-                    <a>#psd</a>
-                    <a>#freebie</a>
-                    <a>#freebie</a>
-                    <a>#dribbble</a>
-                    <span>July 15th, 2016</span>
-                </div>
-                <div class="tweet-item">
-                    <p><i class="fa fa-twitter"></i> Little Dude Character With Multiple Hairs</p>
-                    <a>https://t.co/dLsNZYGVbJ</a>
-                    <a>#freebie</a>
-                    <a>#design</a>
-                    <a>#illustrator</a>
-                    <a>#dribbble</a>
-                    <span>June 23rd, 2016</span>
-                </div>
-                <div class="tweet-item">
-                    <p><i class="fa fa-twitter"></i> Newsletter Subscription Form Mockup</p>
-                    <a>https://t.co/dLsNZYGVbJ</a>
-                    <a>#psd</a>
-                    <a>#freebie</a>
-                    <a>#freebie</a>
-                    <a>#dribbble</a>
-                    <span>June 22nd, 2016</span>
-                </div>
-                <p>Marshall, Will, and Holly on a routine expedition, met the greatest earthquake ever known. High on the rapids, it struck their tiny raft...</p>
-            </div>
-        </div>
-    </div>
-</div>*@

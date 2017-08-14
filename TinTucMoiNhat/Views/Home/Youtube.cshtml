@@ -33,7 +33,8 @@
                             var link = "/youtube/video/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
                             <li>
                                 @*<div class="clearfix _5x46 _4d-l"><a class="_5pb8 _29h _303" href="@link" aria-hidden="true" tabindex="-1" target="_blank" data-ft="{&quot;tn&quot;:&quot;\u003C&quot;}"><div class="_38vo"><img class="_s0 _4ooo _5xib _5sq7 _44ma _rw img" src="@item.avatar" alt="" aria-label="@item.domain_name" role="img"></div></a><div class="_302"><span><a href="@link" target="_blank"><i class="img sp_post-plugin sx_post-plugin_favicon"></i></a></span></div><div class="_3dp _29k"><div><div class="_6a"><div class="_6a _6b" style="height:40px"></div><div class="_6a _6b"><div class="_2_79 _50f4 _50f7">@item.domain_name<span class="_56_f _5dzy _5dz_ _3twv"></span></div><a class="_39g5" href="@link" target="_blank"><abbr title="@item.create_time" data-utime="1500484582" class="timestamp"><span class="timestampContent">@item.create_time</span></abbr></a></div></div></div></div></div>*@
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/@item.id_video" frameborder="0" allowfullscreen></iframe>
+                                @*<iframe width="100%" height="315" src="https://www.youtube.com/embed/@item.id_video" frameborder="0" allowfullscreen></iframe>*@
+                                <img src="@item.image" alt="@item.name" style="width:100%;height:180px;max-width:380px;">
                                 <a class="mbar_title" href="@link">@item.name</a>
                             </li>
                         }
