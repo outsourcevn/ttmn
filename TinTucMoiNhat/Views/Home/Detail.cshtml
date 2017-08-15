@@ -19,15 +19,16 @@
     <meta property="og:image" itemprop="thumbnailUrl" content="@Model.image">
 }
 <style>
-    img{
+    /*img{
         max-width:600px;
-    }
+    }*/
     p {
         margin: 0 0 10px;
         font-family: 'Tinos','Roboto';
         font-size: 20px;
     }
 </style>
+
 <div class="container">
     <div class="row">
         <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
@@ -67,7 +68,7 @@
                             @foreach (var item in ViewBag.news)
                             {
                                 var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
-                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="" style="width:70px;height:70px;"></a><a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                         </ul>
                     </div>
@@ -109,4 +110,18 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
     $('a[href^="http"]').attr('rel', 'nofollow');
+</script>
+<script>
+    //alert($(window).width());
+    if ($(window).width() >= 700) {
+        $("img").css("max-width", "600px");
+        $("video").css("max-width", "600px");
+
+    } else if ($(window).width() >= 400) {
+        $("img").css("max-width", "400px");
+        $("video").css("max-width", "400px");
+    } else {
+        $("img").css("max-width", "310px");
+        $("video").css("max-width", "310px");
+    }
 </script>

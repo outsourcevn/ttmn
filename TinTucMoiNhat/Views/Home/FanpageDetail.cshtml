@@ -20,9 +20,9 @@
     <meta property="og:image" itemprop="thumbnailUrl" content="@HttpUtility.UrlDecode(@Model.image)">
 }
 <style>
-    img {
+    /*img {
         max-width: 600px;
-    }
+    }*/
     p {
         margin: 0 0 10px;
         font-family: 'Tinos','Roboto';
@@ -36,7 +36,7 @@
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     @Html.Raw(TinTucMoiNhat.Config.embededPost(@Model.url, @Model.post_id, @Model.message, @Model.domain, @Model.domain_name, @Model.create_time))
                     @if (Model.full_content != null) { 
-                    <p>@Html.Raw(Model.full_content)</p>
+                    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
                     <p>Nguồn bài báo: <a href="@Model.full_link" rel="nofollow">@Model.full_link</a></p>
                     }
                     <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>
@@ -67,7 +67,7 @@
                             @foreach (var item in ViewBag.news)
                             {
                                 var link = "/fanpost/bai-viet/" + TinTucMoiNhat.Config.unicodeToNoMark(item.domain_name) + "-" + item.id;                                
-                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@Config.smoothTitle(@item.message)</a> </li>
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="" style="width:70px;height:70px;"></a><a class="mbar_title" href="@link">@Config.smoothTitle(@item.message)</a> </li>
                             }
                         </ul>
                     </div>
@@ -95,4 +95,17 @@
 
     </div>
 </div>
-
+<script>
+    //alert($(window).width());
+    if ($(window).width() >= 700) {
+        $("img").css("max-width", "600px");
+        $("video").css("max-width", "600px");
+        
+    } else if ($(window).width() >= 400) {
+        $("img").css("max-width", "400px");
+        $("video").css("max-width", "400px");
+    } else {
+        $("img").css("max-width", "310px");
+        $("video").css("max-width", "310px");
+    }
+</script>
