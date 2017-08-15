@@ -13,7 +13,7 @@ body{background-color:#e5e3df; color:#444; overflow-x:hidden}
 ul{padding:0; margin:0; list-style:none}
 a{text-decoration:none; color:#666}
 a:hover{color:#272727}
-h2{font-family:'Varela',sans-serif}
+h2{font-family:'Tinos','Varela',sans-serif}
 .img-center{display:block; margin-left:auto; margin-right:auto; text-align:center}
 .img-right{display:block; margin-left:auto}
 .img-left{display:block; margin-right:auto}
@@ -52,7 +52,7 @@ h2{font-family:'Varela',sans-serif}
 #searchForm input[type="text"]{background-color:#282828; border:0 none; color:#fff; float:left; font-size:13px; height:35px; outline:0 none; padding:5px 5px 5px 10px; width:85.5%}
 #searchForm input[type="submit"]{background:url("img/btn_search.png") repeat scroll 0 0 rgba(0,0,0,0); border:0 none; float:right; font-size:0; height:35px; width:35px; -webkit-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
 #searchForm input[type="submit"]:hover{opacity:0.75}
-#contentbody{display:inline; float:left; padding:65px 0 22px; width:100%}
+#contentbody{display:inline; float:left; padding:15px 0 22px; width:100%}
 .leftbar_content{float:left; display:inline; width:100%; min-height:200px}
 .leftbar_content > h2{background:none repeat scroll 0 0 white; border-bottom:1px solid #e3e3e3; border-top:1px solid #e3e3e3; font-size:16px; font-weight:bold; margin:0 0 25px; padding:5px 25px; line-height:32px}
 .single_stuff{float:left; display:inline; width:100%; padding:0 15px; margin-bottom:30px}

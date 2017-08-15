@@ -21,7 +21,7 @@
 <link href="/Content/new/owl-carousel/owl.carousel.css" rel="stylesheet">
 <link rel="stylesheet" href="/Content/new/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/Content/new/css/style.css">
-<section id="contentbody" style="padding: 15px 0 22px;">
+@*<section id="contentbody" style="padding: 15px 0 22px;">*@
     <div class="container">
         <div id="owl-slide" class="owl-carousel" style="display:block;">
             @foreach (var item in Model)
@@ -31,24 +31,43 @@
                 <div class="item">
                     <div class="zoom-container">
                         <div class="zoom-caption">
-                            <a href="@link"></a>
-                            <div class="zoom-caption-inner">
-                                <span>@TinTucMoiNhat.Config.getHost(item.link)</span>
-                                <div class="date-feat">
-                                    <i class="fa fa-clock-o"></i>
-                                    @item.date_time
+                                <a href="@link">&nbsp;</a>
+                                <div class="zoom-caption-inner">
+                                    <span>@TinTucMoiNhat.Config.getHost(item.link)</span>
+                                    <div class="date-feat">
+                                        <i class="fa fa-clock-o"></i>
+                                        @item.date_time
+                                    </div>
+                                    <h5 style="color:#ffffff;">@item.name</h5>
                                 </div>
-                                <h4 style="color:#ffffff;">@item.name</h4>
-                            </div>
                         </div>
-                        <img src="@item.image" style="height:300px;"/>
+                        <img src="@item.image" style="height:300px;" onclick="gotolink('@link')"/>                      
                     </div>
                 </div>
                 if (count >= 10) { break; }
             }
         </div>
     </div>
-</section>
+@*</section>*@
+<script src="/Content/new/owl-carousel/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#owl-slide").owlCarousel({
+            autoPlay: 3000,
+            items: 4,
+            itemsDesktop: [1199, 4],
+            itemsDesktopSmall: [979, 3],
+            itemsTablet: [768, 2],
+            itemsMobile: [479, 1],
+            navigation: true,
+            navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+            pagination: false
+        });
+    });
+    function gotolink(link){
+        window.location.href = link;
+    }
+</script>
 <div class="container">    
     <div class="row">
         <div class=" col-sm-12 col-md-6 col-lg-6">

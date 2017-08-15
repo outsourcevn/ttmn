@@ -27,8 +27,8 @@ namespace TinTucMoiNhat.Models
     
         public virtual DbSet<news> news { get; set; }
         public virtual DbSet<page> pages { get; set; }
-        public virtual DbSet<post> posts { get; set; }
         public virtual DbSet<channel> channels { get; set; }
         public virtual DbSet<video> videos { get; set; }
+        public virtual DbSet<post> posts { get; set; }
     }
 }

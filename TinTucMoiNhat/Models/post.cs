@@ -29,5 +29,9 @@ namespace TinTucMoiNhat.Models
         public string image { get; set; }
         public string avatar { get; set; }
         public string date_long { get; set; }
+        public string des { get; set; }
+        public string full_content { get; set; }
+        public string full_link { get; set; }
+        public Nullable<int> loads { get; set; }
     }
 }

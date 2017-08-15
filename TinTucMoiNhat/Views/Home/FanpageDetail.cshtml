@@ -19,13 +19,26 @@
     <meta property="og:description" content="@Html.Raw(ViewBag.des)">
     <meta property="og:image" itemprop="thumbnailUrl" content="@HttpUtility.UrlDecode(@Model.image)">
 }
-
+<style>
+    img {
+        max-width: 600px;
+    }
+    p {
+        margin: 0 0 10px;
+        font-family: 'Tinos','Roboto';
+        font-size: 20px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
             <div class="row">
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     @Html.Raw(TinTucMoiNhat.Config.embededPost(@Model.url, @Model.post_id, @Model.message, @Model.domain, @Model.domain_name, @Model.create_time))
+                    @if (Model.full_content != null) { 
+                    <p>@Html.Raw(Model.full_content)</p>
+                    <p>Nguồn bài báo: <a href="@Model.full_link" rel="nofollow">@Model.full_link</a></p>
+                    }
                     <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>
                     @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>                   
                     <ins class="adsbygoogle"
