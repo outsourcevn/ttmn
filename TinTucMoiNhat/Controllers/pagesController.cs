@@ -70,6 +70,7 @@ namespace TinTucMoiNhat.Controllers
         {
             if (ModelState.IsValid)
             {
+                page.status = 0;
                 db.pages.Add(page);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -104,6 +105,7 @@ namespace TinTucMoiNhat.Controllers
         {
             if (ModelState.IsValid)
             {
+                page.status = 0;
                 db.Entry(page).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

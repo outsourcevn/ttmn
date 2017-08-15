@@ -4,6 +4,8 @@
     ViewBag.Title = Model.name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.url = "http://tintucmoinhat.vn/" + Config.getCatName(Model.cat_id) + "/" + Config.unicodeToNoMark(Model.name) + "-" + Model.id;
+    string imagetb = Model.image;
+    if (!imagetb.StartsWith("http") && !imagetb.StartsWith("www")) {imagetb = "http://tintucmoinhat.vn/" + imagetb;}
 }
 @section metatags {
     <meta name="description" content="@Html.Raw(ViewBag.des)">
@@ -16,7 +18,7 @@
     <meta property="og:url" content="@ViewBag.url">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
     <meta property="og:description" content="@Html.Raw(ViewBag.des)">
-    <meta property="og:image" itemprop="thumbnailUrl" content="@Model.image">
+    <meta property="og:image" itemprop="thumbnailUrl" content="@imagetb">
 }
 <style>
     /*img{

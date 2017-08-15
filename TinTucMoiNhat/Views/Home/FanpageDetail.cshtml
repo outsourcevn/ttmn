@@ -5,6 +5,10 @@
     ViewBag.Title = smoothTitle + "-" + Model.domain_name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.url = "http://tintucmoinhat.vn/fanpost/bai-viet/" + Config.unicodeToNoMark(Model.domain_name) + "-" + Model.id;
+    string imagetb = Model.image;
+    if (!imagetb.StartsWith("http") && !imagetb.StartsWith("www")) { imagetb = "http://tintucmoinhat.vn/" + imagetb; }
+    //string urlSmooth = Model.domain;
+    
 }
 @section metatags {
     <meta name="description" content="@Html.Raw(ViewBag.des)">
@@ -17,7 +21,7 @@
     <meta property="og:url" content="@ViewBag.url">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
     <meta property="og:description" content="@Html.Raw(ViewBag.des)">
-    <meta property="og:image" itemprop="thumbnailUrl" content="@HttpUtility.UrlDecode(@Model.image)">
+    <meta property="og:image" itemprop="thumbnailUrl" content="@HttpUtility.UrlDecode(@imagetb)">
 }
 <style>
     /*img {
@@ -36,9 +40,10 @@
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     @Html.Raw(TinTucMoiNhat.Config.embededPost(@Model.url, @Model.post_id, @Model.message, @Model.domain, @Model.domain_name, @Model.create_time))
                     @if (Model.full_content != null) { 
-                    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
-                    <p>Nguồn bài báo: <a href="@Model.full_link" rel="nofollow">@Model.full_link</a></p>
+                        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
+                        <p>Nguồn bài báo: <a href="@Model.full_link" rel="nofollow">@Model.full_link</a></p>
                     }
+                    
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- auto resize in content -->
                     <ins class="adsbygoogle"
