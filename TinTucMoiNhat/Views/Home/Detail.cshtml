@@ -6,6 +6,7 @@
     ViewBag.url = "http://tintucmoinhat.vn/" + Config.getCatName(Model.cat_id) + "/" + Config.unicodeToNoMark(Model.name) + "-" + Model.id;
     string imagetb = Model.image;
     if (!imagetb.StartsWith("http") && !imagetb.StartsWith("www")) {imagetb = "http://tintucmoinhat.vn/" + imagetb;}
+    
 }
 @section metatags {
     <meta name="description" content="@Html.Raw(ViewBag.des)">
@@ -36,10 +37,12 @@
         <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
             <div class="row">
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
-                    <h1>@Model.name</h1>                    
-                    <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
-                    <p>@Html.Raw(Model.full_content)</p>
-                    <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
+                    @if (Model.status == 0) { 
+                        <h1>@Model.name</h1>                    
+                        <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
+                        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
+                        <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
+                    }
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- auto resize in content -->
                     <ins class="adsbygoogle"
@@ -52,7 +55,8 @@
                     </script>
                    
                     <!-- // End Ad Tag -->
-                    <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>
+                    @*<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>*@
+                    <iframe width="100%" height="250" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d00c1d56c&theme=2&p=3" frameborder="0" scrolling="no"></iframe>
                     <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
                         <h2>Quảng cáo</h2>
                         <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
@@ -85,6 +89,7 @@
                 <div class="rightbar_content">
                     <div class="single_blog_sidebar wow fadeInUp">
                         <h2>Quảng cáo</h2>
+                        <iframe width="100%" height="695" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d122dd659&theme=3&p=6" frameborder="0" scrolling="no"></iframe>
                         @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:300px;height:250px"

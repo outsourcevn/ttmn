@@ -1,0 +1,123 @@
+﻿@model TinTucMoiNhat.Models.news
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>news</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.full_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.full_content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cat_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pdf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pdf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loads)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loads)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

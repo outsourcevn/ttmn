@@ -31,5 +31,7 @@ namespace TinTucMoiNhat.Models
         }
 
         public System.Data.Entity.DbSet<TinTucMoiNhat.Models.page> pages { get; set; }
+
+        public System.Data.Entity.DbSet<TinTucMoiNhat.Models.news> news { get; set; }
     }
 }

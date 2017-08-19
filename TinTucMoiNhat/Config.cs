@@ -263,6 +263,22 @@ namespace TinTucMoiNhat
             }
             return val;
         }
+        public static string getFullCatNameFacebook(int? cat_id)
+        {
+            string val = "Ngôi Sao, Giải Trí";
+            switch (cat_id)
+            {
+                case 1:
+                    val = "Ngôi Sao, Giải Trí";
+                    break;
+                case 6:
+                    val = "Sản Phẩm, Dịch Vụ";
+                    break;
+                default: val = "Ngôi Sao, Giải Trí";
+                    break;
+            }
+            return val;
+        }
         public static string getFanpageName(string page_id){
             try{
                 if (page_id == "") return "all";

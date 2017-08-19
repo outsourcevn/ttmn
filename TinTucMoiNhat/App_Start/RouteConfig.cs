@@ -43,6 +43,11 @@ namespace TinTucMoiNhat
                 new { controller = "Home", action = "YoutubeDetail", title = UrlParameter.Optional, id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                "thong tin doanh nghiep",
+                "thong-tin-doanh-nghiep/{catname}-{page_id}/{cat_id}/{pg}",
+                new { controller = "Home", action = "Company", catname = UrlParameter.Optional, page_id = UrlParameter.Optional, cat_id = UrlParameter.Optional, pg = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
