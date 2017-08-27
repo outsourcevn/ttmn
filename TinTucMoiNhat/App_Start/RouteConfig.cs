@@ -13,6 +13,11 @@ namespace TinTucMoiNhat
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+                "thoi tiet",
+                "du-bao-thoi-tiet",
+                new { controller = "Home", action = "Weather"}
+            );
+            routes.MapRoute(
                 "chi tiet",
                 "{catname}/{name}-{id}",
                 new { controller = "Home", action = "Detail", catname = UrlParameter.Optional, name = UrlParameter.Optional, id = UrlParameter.Optional }

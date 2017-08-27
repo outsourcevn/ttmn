@@ -2,7 +2,7 @@
 
 @{
     string smoothTitle = Config.smoothTitle(Model.message);
-    ViewBag.Title = smoothTitle + "-" + Model.domain_name;
+    ViewBag.Title = smoothTitle + " - " + Model.domain_name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.url = "http://tintucmoinhat.vn/fanpost/bai-viet/" + Config.unicodeToNoMark(Model.domain_name) + "-" + Model.id;
     string imagetb = Model.image;

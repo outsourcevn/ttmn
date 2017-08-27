@@ -9,7 +9,7 @@
 <div class="col-md-12">
     <form id="searchForm">
         <input type="text" class="form-control" placeholder="Từ khóa" id="keyword" >
-        <input type="button" class="form-control"  value="Tìm" onclick="search();">
+        <input type="button" class="form-control btn-default"  value="Tìm" onclick="search();">
     </form>
 </div>
 <script>
@@ -97,7 +97,12 @@
             </td>
             <td>
                 <a href="@link">Chi tiết</a>|
-                <button value="Gỡ Bài" onclick="hidepost(@item.id);">Gỡ bài</button>|
+                @if (item.status == 0) { 
+                    <button value="Gỡ Bài" onclick="hidepost(@item.id,1);">Gỡ bài</button>
+                }else{
+                    <button value="Hiện Bài" onclick="hidepost(@item.id,0);">Hiện bài</button>
+                }
+                |
                 @Html.ActionLink("Sửa", "Sửa", new { id = item.id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.id })
                 
@@ -107,10 +112,10 @@
 
 </table>
 <script>
-    function hidepost(id) {
+    function hidepost(id,status) {
         $.ajax({
             url: "/news/hidepost", type: 'post',
-            data: { id: id },
+            data: { id: id, status:status},
             success: function (rs) {
                 if (rs == '1') {
                     alert("Cập nhật thành công!");
