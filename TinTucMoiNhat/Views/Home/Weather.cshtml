@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.weather>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Dự báo thời tiết " + ViewBag.namelocation;
+    ViewBag.Title = "Dự Báo Thời Tiết "+ ViewBag.namelocation+ " ngày "+Config.getDateFromId(ViewBag.dateid);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section metatags {
@@ -233,7 +233,7 @@ figure {
 	height: 32px;
 }
 </style>
-<h1 style="text-align:center;">Dự Báo Thời Tiết</h1>
+<h1 style="text-align:center;">@ViewBag.Title</h1>
 <div class="container">
     <div class="row">
        @if (Model != null)

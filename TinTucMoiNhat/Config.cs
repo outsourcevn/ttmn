@@ -461,8 +461,7 @@ namespace TinTucMoiNhat
                     string temp = "Nhiệt độ từ " + convertFtoC(oklow) + "° -> " + convertFtoC(okhigh) + "° ";
                     count++;
                     rs+="<div class=\"col-md-4\">";
-                    rs+="<div class=\"day\">";
-                    rs+="<div class=\"day\">";
+                    rs+="<div class=\"day\">";                    
                     rs += "<h1>" + day + "</h1>";
                     rs += "<p>" + temp + "</p>";
                     rs += "<p>" + textweather+"</p>";
@@ -474,6 +473,18 @@ namespace TinTucMoiNhat
             catch(Exception ex)
             {
                 return "Chưa có thông tin dự báo thời tiết mấy ngày tới";
+            }
+        }
+        public static string getDateFromId(int num)
+        {
+            try
+            {
+                string s = num.ToString();
+                return s.Substring(6, 2) + "/" + s.Substring(4, 2) + "/" + s.Substring(0, 4);
+            }
+            catch (Exception ex)
+            {
+                return DateTime.Now.ToString();
             }
         }
     }
