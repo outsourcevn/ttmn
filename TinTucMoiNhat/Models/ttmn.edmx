@@ -14,6 +14,23 @@
           <Property Name="url" Type="nvarchar" MaxLength="255" />
           <Property Name="id_channel" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="id" />
@@ -32,6 +49,27 @@
           <Property Name="pdf" Type="nvarchar" MaxLength="301" />
           <Property Name="status" Type="int" />
           <Property Name="loads" Type="int" />
+        </EntityType>
+        <EntityType Name="news_business">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="268" />
+          <Property Name="des" Type="ntext" />
+          <Property Name="full_content" Type="ntext" />
+          <Property Name="image" Type="nvarchar" MaxLength="151" />
+          <Property Name="cat_id" Type="int" />
+          <Property Name="keywords" Type="nvarchar" MaxLength="250" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="time" Type="time" Precision="7" />
+          <Property Name="date_id" Type="int" />
+          <Property Name="pdf" Type="nvarchar" MaxLength="301" />
+          <Property Name="status" Type="int" />
+          <Property Name="member_id" Type="bigint" />
+          <Property Name="loads" Type="int" />
+          <Property Name="member_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="member_email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="pages">
           <Key>
@@ -83,12 +121,45 @@
           <Property Name="id_video" Type="nvarchar" MaxLength="50" />
           <Property Name="image" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="weather">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="150" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="date_id" Type="int" />
+          <Property Name="wind_chill" Type="float" />
+          <Property Name="wind_direction" Type="float" />
+          <Property Name="wind_speed" Type="float" />
+          <Property Name="atmosphere_humidity" Type="float" />
+          <Property Name="atmosphere_pressure" Type="float" />
+          <Property Name="atmosphere_visibility" Type="float" />
+          <Property Name="astronomy_sunrise" Type="nvarchar" MaxLength="50" />
+          <Property Name="astronomy_sunset" Type="nvarchar" MaxLength="50" />
+          <Property Name="forecast" Type="ntext" />
+          <Property Name="code" Type="int" />
+          <Property Name="temp" Type="float" />
+          <Property Name="name_location" Type="nvarchar" MaxLength="251" />
+        </EntityType>
+        <EntityType Name="weather_code">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="channel" EntityType="Self.channel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="news_business" EntityType="Self.news_business" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pages" EntityType="Self.pages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="videos" EntityType="Self.videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weather_code" EntityType="Self.weather_code" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -119,6 +190,11 @@
           <EntitySet Name="channels" EntityType="tintucmoinhatModel.channel" />
           <EntitySet Name="videos" EntityType="tintucmoinhatModel.video" />
           <EntitySet Name="posts" EntityType="tintucmoinhatModel.post" />
+          <EntitySet Name="locations" EntityType="tintucmoinhatModel.location" />
+          <EntitySet Name="members" EntityType="tintucmoinhatModel.member" />
+          <EntitySet Name="news_business" EntityType="tintucmoinhatModel.news_business" />
+          <EntitySet Name="weathers" EntityType="tintucmoinhatModel.weather" />
+          <EntitySet Name="weather_code" EntityType="tintucmoinhatModel.weather_code" />
         </EntityContainer>
         <EntityType Name="page">
           <Key>
@@ -178,6 +254,72 @@
           <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="full_link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="loads" Type="Int32" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="news_business">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="268" FixedLength="false" Unicode="true" />
+          <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="151" FixedLength="false" Unicode="true" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="pdf" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="member_id" Type="Int64" />
+          <Property Name="loads" Type="Int32" />
+          <Property Name="member_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="member_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="weather">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="wind_chill" Type="Double" />
+          <Property Name="wind_direction" Type="Double" />
+          <Property Name="wind_speed" Type="Double" />
+          <Property Name="atmosphere_humidity" Type="Double" />
+          <Property Name="atmosphere_pressure" Type="Double" />
+          <Property Name="atmosphere_visibility" Type="Double" />
+          <Property Name="astronomy_sunrise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="astronomy_sunset" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="forecast" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="temp" Type="Double" />
+          <Property Name="name_location" Type="String" MaxLength="251" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="weather_code">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -265,6 +407,77 @@
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.location">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.member">
+              <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news_business">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.news_business">
+              <MappingFragment StoreEntitySet="news_business">
+                <ScalarProperty Name="member_email" ColumnName="member_email" />
+                <ScalarProperty Name="member_name" ColumnName="member_name" />
+                <ScalarProperty Name="loads" ColumnName="loads" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="pdf" ColumnName="pdf" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="full_content" ColumnName="full_content" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weathers">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.weather">
+              <MappingFragment StoreEntitySet="weather">
+                <ScalarProperty Name="name_location" ColumnName="name_location" />
+                <ScalarProperty Name="temp" ColumnName="temp" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="forecast" ColumnName="forecast" />
+                <ScalarProperty Name="astronomy_sunset" ColumnName="astronomy_sunset" />
+                <ScalarProperty Name="astronomy_sunrise" ColumnName="astronomy_sunrise" />
+                <ScalarProperty Name="atmosphere_visibility" ColumnName="atmosphere_visibility" />
+                <ScalarProperty Name="atmosphere_pressure" ColumnName="atmosphere_pressure" />
+                <ScalarProperty Name="atmosphere_humidity" ColumnName="atmosphere_humidity" />
+                <ScalarProperty Name="wind_speed" ColumnName="wind_speed" />
+                <ScalarProperty Name="wind_direction" ColumnName="wind_direction" />
+                <ScalarProperty Name="wind_chill" ColumnName="wind_chill" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weather_code">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.weather_code">
+              <MappingFragment StoreEntitySet="weather_code">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,8 +14,8 @@ namespace TinTucMoiNhat
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 "thoi tiet",
-                "du-bao-thoi-tiet",
-                new { controller = "Home", action = "Weather"}
+                "du-bao-thoi-tiet/{location}/{dateid}",
+                new { controller = "Home", action = "Weather", location = UrlParameter.Optional, dateid = UrlParameter.Optional}
             );
             routes.MapRoute(
                 "chi tiet",

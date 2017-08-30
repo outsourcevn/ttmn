@@ -12,7 +12,7 @@ namespace TinTucMoiNhat.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class tintucmoinhatEntities : DbContext
     {
         public tintucmoinhatEntities()
@@ -30,5 +30,10 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<channel> channels { get; set; }
         public virtual DbSet<video> videos { get; set; }
         public virtual DbSet<post> posts { get; set; }
+        public virtual DbSet<location> locations { get; set; }
+        public virtual DbSet<member> members { get; set; }
+        public virtual DbSet<news_business> news_business { get; set; }
+        public virtual DbSet<weather> weathers { get; set; }
+        public virtual DbSet<weather_code> weather_code { get; set; }
     }
 }

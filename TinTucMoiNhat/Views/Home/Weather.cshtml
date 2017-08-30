@@ -1,29 +1,292 @@
-﻿@{
-    ViewBag.Title = "Dự báo thời tiết";
+﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.weather>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Dự báo thời tiết " + ViewBag.namelocation;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section metatags {
-    <meta name="description" content="thoi tiet, du bao thoi tiet">
+    <meta name="description" content="thoi tiet, du bao thoi tiet, @ViewBag.namelocation">
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="robots" content="index,follow,noodp">
     <meta property="fb:app_id" content="1930351307185969" />
     <meta property="og:locale" content="vi_VN">
     <meta property="og:type" content="weather">
-    <meta property="og:url" content="http://tintucmoinhat.vn/du-bao-thoi-tiet">
+    <meta property="og:url" content="http://tintucmoinhat.vn/du-bao-thoi-tiet/@ViewBag.location/@ViewBag.dateid">
     <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-    <meta property="og:description" content="thoi tiet, du bao thoi tiet">
+    <meta property="og:description" content="thoi tiet, du bao thoi tiet, @ViewBag.namelocation">
     <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/images/thoitiet.png">
 }
+<style>
+    body {
+    background: #f2f2f2;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 95px 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+}
+
+.row-no-gutter {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.row-no-gutter [class*="col-"] {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+
+#card {
+	background: #fff;
+	position: relative;
+
+	-webkit-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+	-moz-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+	box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;	
+}
+
+.city-selected {
+	position: relative;
+	overflow: hidden;
+	min-height: 200px;
+	background: #3D6AA2;
+}
+
+article {
+	position: relative;
+	z-index: 2;
+	color: #fff;
+	padding: 20px;
+
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-align-content: flex-start;
+	-ms-flex-line-pack: start;
+	align-content: flex-start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+
+.info .city,
+.night {
+	font-size: 24px;
+	font-weight: 200;
+	position: relative;
+
+
+	-webkit-order: 0;
+	-ms-flex-order: 0;
+	order: 0;
+	-webkit-flex: 0 1 auto;
+	-ms-flex: 0 1 auto;
+	flex: 0 1 auto;
+	-webkit-align-self: auto;
+	-ms-flex-item-align: auto;
+	align-self: auto;
+}
+
+.info .city:after {
+	/*content: '';
+	width: 15px;
+	height: 2px;
+	background: #fff;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;*/
+}
+
+.city span {
+	color: #fff;
+	font-size: 13px;
+	font-weight: bold;
+
+	text-transform: lowercase;
+	text-align: left;
+}
+
+.night {
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+.icon {
+	width: 84px;
+	height: 84px;
+	-webkit-order: 0;
+	-ms-flex-order: 0;
+	order: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	-webkit-align-self: center;
+	-ms-flex-item-align: center;
+	align-self: center;
+
+	overflow: visible;
+
+}
+
+
+.temp {
+	font-size: 73px;
+	display: block;
+	position: relative;
+	font-weight: bold;
+}
+
+svg {
+	color: #fff;
+	fill: currentColor;
+}
+
+
+.wind svg {
+	width: 18px;
+	height: 18px;
+	margin-top: 20px;
+	margin-right: 10px;
+	vertical-align: bottom;
+}
+
+.wind span {
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+.city-selected:hover figure {
+	opacity: 0.4;
+}
+
+
+figure {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.days .row [class*="col-"]:nth-child(2) .day  {
+    border-width: 0 1px 0 1px;
+    border-style: solid;
+    border-color: #eaeaea;
+}
+
+.days .row [class*="col-"] {
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;	
+}
+
+.days .row [class*="col-"]:hover{
+	background: #eaeaea;
+}
+
+.day {
+	padding: 10px 0px;
+	text-align: center;
+
+}
+
+.day h1 {
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-top: 10px;
+}
+
+.day svg {
+	color: #000;
+	width: 32px;
+	height: 32px;
+}
+</style>
 <h1 style="text-align:center;">Dự Báo Thời Tiết</h1>
 <div class="container">
     <div class="row">
-        <a href="https://www.accuweather.com/vi/us/new-york-ny/10007/current-weather/349727" class="aw-widget-legal">
-            <!--
-        By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at https://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at https://www.accuweather.com/en/privacy.
-        -->
-        </a><div id="awtd1503848324658" class="aw-widget-36hour" data-locationkey="" data-unit="c" data-language="vi" data-useip="true" data-uid="awtd1503848324658" data-editlocation="true"></div>
-        <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+       @if (Model != null)
+       {
+           foreach (var item in Model)
+           {
+            <div class="container" style="background:#09c;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="card" class="weater">
+                            <div class="city-selected">
+                                <article>
+                                    <div class="info">
+                                        <div class="city">@item.name_location</div>
+                                        <div class="night2">@Config.getDayOfWeek((DateTime)item.date_time), Ngày @String.Format("{0:dd/MM/yyyy}", @item.date_time)</div>
+                                        <div class="temp">@Config.convertFtoC(item.temp) ° <span style="float:right;font-size:18px;color:yellow;">@Config.getWeatherText(item.code)</span></div>
+                                        <div class="wind">                                            
+                                            <span>Tốc độ gió @(@item.wind_speed*60/100) km/h</span>
+                                        </div>
+                                    </div>
+                                    <div class="icon">
+                                        
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="days">
+                                <div class="row row-no-gutter">
+                                    @Html.Raw(Config.getNextDay(item.forecast))
+                                    @*<div class="col-md-4">
+                                        <div class="day">
+                                            <h1>Monday</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="day">
+                                            <h1>Tuesday</h1>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="day">
+                                            <h1>Wednesday</h1>
+                                            
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           }
+       }
     </div>
     <div>
         <iframe src="https://www.facebook.com/plugins/like.php?href=http://tintucmoinhat.vn/du-bao-thoi-tiet&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>

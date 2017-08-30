@@ -14,6 +14,7 @@ namespace TinTucMoiNhat
         public static bool isCrawlFacebook = false;
         public static bool isCrawlYoutube = false;
         public static bool isCrawlFacebookNews = false;
+        public static bool isCrawlWeather = false;
         public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {
@@ -375,6 +376,105 @@ namespace TinTucMoiNhat
             MyCookie.Expires = DateTime.Now.AddDays(-1);
             HttpContext.Current.Response.Cookies.Add(MyCookie);
             //Response.Cookies.Add(MyCookie);           
+        }
+        public static string convertFtoC(double? temp)
+        {
+            try
+            {
+                int c=(int)((temp-32)*5/9);
+                return c.ToString();
+            }
+            catch
+            {
+                return temp.ToString() + "° F";
+            }
+        }
+        public static string getWeatherText(int? code)
+        {
+            try
+            {
+                return "Dự báo: " + db.weather_code.Find(code).name;
+            }
+            catch
+            {
+                return "Dự báo: chưa có thông tin";
+            }
+        }
+        public static string getDayOfWeek(DateTime day)
+        {
+            try
+            {
+                switch (day.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        return "Thứ hai";
+                        break;
+                    case DayOfWeek.Tuesday:
+                        return "Thứ ba";
+                        break;
+                    case DayOfWeek.Wednesday:
+                        return "Thứ tư";
+                        break;
+                    case DayOfWeek.Thursday:
+                        return "Thứ năm";
+                        break;
+                    case DayOfWeek.Friday:
+                        return "Thứ sáu";
+                        break;
+                    case DayOfWeek.Saturday:
+                        return "Thứ bảy";
+                        break;
+                    case DayOfWeek.Sunday:
+                        return "Chủ nhật";
+                        break;
+                }
+                return "Thứ hai";
+            }
+            catch
+            {
+                return "Thứ hai";
+            }
+        }
+        public static string getNextDay(string forecast)
+        {
+            try
+            {
+                dynamic results = Newtonsoft.Json.JsonConvert.DeserializeObject(forecast);
+                int count = 0;
+                string rs = "";
+                foreach(var item in results){
+                    int okcode = 3200;
+                    string code = item.code;
+                    bool ok;
+                    ok = int.TryParse(code, out okcode);
+                    string textweather = getWeatherText(okcode);
+                    DateTime date = DateTime.Now;
+                    string sdate = item.date;
+                    ok = DateTime.TryParse(sdate, out date);
+                    string day = getDayOfWeek(date);
+                    double okhigh = 0;
+                    double oklow = 0;
+                    string high = item.high;
+                    string low = item.low;
+                    ok = double.TryParse(high, out okhigh);
+                    ok = double.TryParse(low, out oklow);
+                    string temp = "Nhiệt độ từ " + convertFtoC(oklow) + "° -> " + convertFtoC(okhigh) + "° ";
+                    count++;
+                    rs+="<div class=\"col-md-4\">";
+                    rs+="<div class=\"day\">";
+                    rs+="<div class=\"day\">";
+                    rs += "<h1>" + day + "</h1>";
+                    rs += "<p>" + temp + "</p>";
+                    rs += "<p>" + textweather+"</p>";
+                    rs += "</div></div>";
+                    if (count >= 3) break;
+                }
+                return rs;
+            }
+            catch(Exception ex)
+            {
+                return "Chưa có thông tin dự báo thời tiết mấy ngày tới";
+            }
         }
     }
     
