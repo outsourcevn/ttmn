@@ -1,0 +1,38 @@
+﻿@model PagedList.IPagedList<TinTucMoiNhat.Models.weather>
+@using PagedList.Mvc;
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+
+        <div class="col-sm-12" style="background:#09c;">
+            <div id="card" class="weater">
+                <div class="city-selected" style="background:#09c;">
+                    <article style="background:#09c;">
+                        <div class="info">
+                            <div class="city"><a href="/du-bao-thoi-tiet/@item.location/@item.date_id" style="color:#ffffff;">@item.name_location</a></div>
+                            @*<div class="night2">@Config.getDayOfWeek((DateTime)item.date_time), Ngày @String.Format("{0:dd/MM/yyyy}", @item.date_time)</div>*@
+                            <div class="night2">&nbsp;</div>
+                            <div class="temp">@Config.convertFtoC(item.temp) ° <span style="float:right;font-size:18px;color:#b6ff00;">@Config.getWeatherText(item.code)</span></div>
+                            <div class="wind">
+                                <span>Tốc độ gió @(@item.wind_speed * 60 / 100) km/h, </span>
+                                <span style="color:yellow;">Độ ẩm @item.atmosphere_humidity %, </span>
+                                <span>Bình minh: @item.astronomy_sunrise, Hoàng hôn: @item.astronomy_sunset</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="days">
+                    <div class="row row-no-gutter">
+                        @Html.Raw(Config.getNextDay(item.forecast))
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+
+
