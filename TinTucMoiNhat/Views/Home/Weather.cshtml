@@ -235,7 +235,7 @@ figure {
 </style>
 <h1 style="text-align:center;">@ViewBag.Title</h1>
 <div class="container">
-    <div class="row">
+    <div class="row">        
        @if (Model != null)
        {
            foreach (var item in Model)
@@ -247,11 +247,13 @@ figure {
                             <div class="city-selected">
                                 <article>
                                     <div class="info">
-                                        <div class="city">@item.name_location</div>
+                                        <div class="city"><a href="/du-bao-thoi-tiet/@item.location/@item.date_id" style="color:#ffffff;">@item.name_location</a></div>
                                         <div class="night2">@Config.getDayOfWeek((DateTime)item.date_time), Ngày @String.Format("{0:dd/MM/yyyy}", @item.date_time)</div>
                                         <div class="temp">@Config.convertFtoC(item.temp) ° <span style="float:right;font-size:18px;color:yellow;">@Config.getWeatherText(item.code)</span></div>
                                         <div class="wind">                                            
-                                            <span>Tốc độ gió @(@item.wind_speed*60/100) km/h</span>
+                                            <span>Tốc độ gió @(@item.wind_speed*60/100) km/h, </span>
+                                            <span style="color:yellow;">Độ ẩm @item.atmosphere_humidity %, </span>
+                                            <span>Bình minh: @item.astronomy_sunrise, Hoàng hôn: @item.astronomy_sunset</span>
                                         </div>
                                     </div>
                                     <div class="icon">
@@ -291,5 +293,7 @@ figure {
     <div>
         <iframe src="https://www.facebook.com/plugins/like.php?href=http://tintucmoinhat.vn/du-bao-thoi-tiet&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
         <div class="fb-comments" data-href="http://tintucmoinhat.vn/du-bao-thoi-tiet" data-numposts="15"></div>
+       
     </div>
 </div>
+<h2 style="text-align:center;"><a href="/du-bao-thoi-tiet/all/0">Thoi Tiet</a></h2>

@@ -1,7 +1,28 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h1>Đăng Ký Nhận Tin</h1>
+<p>Bạn click vào biểu tượng này và ấn Cho Phép nhận tin tức mới nhé, mỗi khi báo có tin nóng và nhiều lượt đọc nhất chúng tôi sẽ thông báo cho các bạn qua thông báo hiện ở góc phải dưới màn hình</p>
 
-<p>Use this area to provide additional information.</p>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+        appId: "d33eb61e-6b59-4087-a47e-76c762641c3b",
+        autoRegister: false, /* Set to true to automatically prompt visitors */
+        httpPermissionRequest: {
+            enable: true
+        },
+        promptOptions: {
+            /* actionMessage limited to 90 characters */
+            actionMessage: "Chúng tôi muốn tự động thông báo khi có tin tức mới.",
+            /* acceptButtonText limited to 15 characters */
+            acceptButtonText: "Cho Phép",
+            /* cancelButtonText limited to 15 characters */
+            cancelButtonText: "Không"
+        },
+        notifyButton: {
+            enable: true /* Set to false to hide */
+        }
+    }]);
+</script>

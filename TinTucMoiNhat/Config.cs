@@ -220,6 +220,9 @@ namespace TinTucMoiNhat
                 case 10:
                     val = "quang-ninh";
                     break;
+                case 999:
+                    val = "tam-su";
+                    break;
             }
             return val;
         }
@@ -260,6 +263,9 @@ namespace TinTucMoiNhat
                     break;
                 case 10:
                     val = "Báo Quảng Ninh";
+                    break;
+                case 999:
+                    val = "Tâm Sự";
                     break;
             }
             return val;
@@ -486,6 +492,13 @@ namespace TinTucMoiNhat
             {
                 return DateTime.Now.ToString();
             }
+        }
+        /// <summary>
+        /// Remove HTML from string with Regex.
+        /// </summary>
+        public static string removeHtml(string source)
+        {
+            return Regex.Replace(source, "<.*?>", string.Empty);
         }
     }
     

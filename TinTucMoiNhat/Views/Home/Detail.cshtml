@@ -41,9 +41,9 @@
                         <h1>@Model.name</h1>                    
                         <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
                         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
-                        <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a></p>
+                        <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a>, @Model.loads lượt xem</p>
                     }
-                    <div style="text-align:center;">
+                    @*<div style="text-align:center;">
                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({
@@ -52,7 +52,7 @@
                             });
                         </script>
                     </div>
-                    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>                    
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-6575239088642506"
@@ -64,11 +64,11 @@
                    
                     <!-- // End Ad Tag -->
                     @*<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>*@
-                    <iframe width="100%" height="250" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d00c1d56c&theme=2&p=3" frameborder="0" scrolling="no"></iframe>
+                    @*<iframe width="100%" height="250" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d00c1d56c&theme=2&p=3" frameborder="0" scrolling="no"></iframe>
                     <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
                         <h2>Quảng cáo</h2>
                         <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
-                    </div>
+                    </div>*@
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
                     <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
@@ -141,5 +141,72 @@
     } else {
         $("img").css("max-width", "310px");
         $("video").css("max-width", "310px");
+    }
+</script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+        appId: "d33eb61e-6b59-4087-a47e-76c762641c3b",
+        autoRegister: false,
+        notifyButton: {
+            enable: true, /* Set to false to hide */
+            position: 'bottom-left',
+            prenotify: true,
+            text: {
+                'tip.state.unsubscribed': 'Subscribe to notifications',
+                'tip.state.subscribed': "You're subscribed to notifications",
+                'tip.state.blocked': "You've blocked notifications",
+                'message.prenotify': 'Click to subscribe to notifications',
+                'message.action.subscribed': "Thanks for subscribing!",
+                'message.action.resubscribed': "You're subscribed to notifications",
+                'message.action.unsubscribed': "You won't receive notifications again",
+                'dialog.main.title': 'Quản Lý Thông Báo',
+                'dialog.main.button.subscribe': 'Theo Dõi Tin Tức',
+                'dialog.main.button.unsubscribe': 'Bỏ Theo Dõi Tin Tức',
+                'dialog.blocked.title': 'Unblock Notifications',
+                'dialog.blocked.message': "Follow these instructions to allow notifications:"
+            }
+        },
+        welcomeNotification: {
+            "title": "Đăng ký nhận tin mới nhất",
+            "message": "Chúng tôi sẽ gửi tin mới nhất trong ngày cho bạn",
+            /*"url": "",  Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+        },
+        promptOptions: {
+            /* actionMessage limited to 90 characters */
+            actionMessage: "Chúng tôi muốn tự động thông báo khi có tin tức mới.",
+            /* acceptButtonText limited to 15 characters */
+            acceptButtonText: "Cho Phép",
+            /* cancelButtonText limited to 15 characters */
+            cancelButtonText: "Không"
+        }
+    }]);
+</script>
+<script data-cfasync="false">
+    window.OneSignal = window.OneSignal || [];
+
+    /* In milliseconds, time to wait before prompting user. This time is relative to right after the user presses <ENTER> on the address bar and navigates to your page */
+    var notificationPromptDelay = 30000;
+
+    /* Why use .push? See: http://stackoverflow.com/a/38466780/555547 */
+    window.OneSignal.push(function () {
+        /* Use navigation timing to find out when the page actually loaded instead of using setTimeout() only which can be delayed by script execution */
+        var navigationStart = window.performance.timing.navigationStart;
+
+        /* Get current time */
+        var timeNow = Date.now();
+
+        /* Prompt the user if enough time has elapsed */
+        setTimeout(promptAndSubscribeUser, Math.max(notificationPromptDelay - (timeNow - navigationStart), 0));
+    });
+
+    function promptAndSubscribeUser() {
+        window.OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+            if (!isEnabled) {
+                /* Want to trigger different permission messages? See: https://documentation.onesignal.com/docs/permission-requests#section-onesignal-permission-messages */
+                window.OneSignal.showHttpPrompt();
+            }
+        });
     }
 </script>

@@ -21,16 +21,6 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="150" />
         </EntityType>
-        <EntityType Name="members">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="250" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" />
-          <Property Name="phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="pass" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="id" />
@@ -71,6 +61,16 @@
           <Property Name="member_name" Type="nvarchar" MaxLength="150" />
           <Property Name="member_email" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_news" Type="bigint" />
+          <Property Name="id_posts" Type="bigint" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="date_id" Type="int" />
+        </EntityType>
         <EntityType Name="pages">
           <Key>
             <PropertyRef Name="id" />
@@ -105,6 +105,16 @@
           <Property Name="full_content" Type="ntext" />
           <Property Name="full_link" Type="nvarchar" MaxLength="250" />
           <Property Name="loads" Type="int" />
+        </EntityType>
+        <EntityType Name="profiles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="videos">
           <Key>
@@ -152,11 +162,12 @@
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="channel" EntityType="Self.channel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news_business" EntityType="Self.news_business" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pages" EntityType="Self.pages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profiles" EntityType="Self.profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="videos" EntityType="Self.videos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weather_code" EntityType="Self.weather_code" Schema="dbo" store:Type="Tables" />
@@ -191,10 +202,11 @@
           <EntitySet Name="videos" EntityType="tintucmoinhatModel.video" />
           <EntitySet Name="posts" EntityType="tintucmoinhatModel.post" />
           <EntitySet Name="locations" EntityType="tintucmoinhatModel.location" />
-          <EntitySet Name="members" EntityType="tintucmoinhatModel.member" />
           <EntitySet Name="news_business" EntityType="tintucmoinhatModel.news_business" />
           <EntitySet Name="weathers" EntityType="tintucmoinhatModel.weather" />
           <EntitySet Name="weather_code" EntityType="tintucmoinhatModel.weather_code" />
+          <EntitySet Name="profiles" EntityType="tintucmoinhatModel.profile" />
+          <EntitySet Name="notifications" EntityType="tintucmoinhatModel.notification" />
         </EntityContainer>
         <EntityType Name="page">
           <Key>
@@ -262,16 +274,6 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="member">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="news_business">
           <Key>
             <PropertyRef Name="id" />
@@ -320,6 +322,26 @@
           </Key>
           <Property Name="code" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_news" Type="Int64" />
+          <Property Name="id_posts" Type="Int64" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="date_id" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -418,17 +440,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="members">
-            <EntityTypeMapping TypeName="tintucmoinhatModel.member">
-              <MappingFragment StoreEntitySet="members">
-                <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="news_business">
             <EntityTypeMapping TypeName="tintucmoinhatModel.news_business">
               <MappingFragment StoreEntitySet="news_business">
@@ -478,6 +489,28 @@
               <MappingFragment StoreEntitySet="weather_code">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profiles">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.profile">
+              <MappingFragment StoreEntitySet="profiles">
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="id_posts" ColumnName="id_posts" />
+                <ScalarProperty Name="id_news" ColumnName="id_news" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
