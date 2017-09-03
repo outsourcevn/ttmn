@@ -1,16 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "Subcribe";
+    ViewBag.Title = "Đăng ký nhận tin tức mới nhất";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Đăng Ký Nhận Tin</h1>
-<p>Bạn click vào biểu tượng góc trái bên dưới và ấn Cho Phép nhận tin tức mới nhé, mỗi khi báo có tin nóng và nhiều lượt đọc nhất chúng tôi sẽ thông báo cho các bạn qua thông báo hiện ở góc phải dưới màn hình</p>
+<div class="col-md-12" style="min-height:500px;">
+    <h1>Đăng Ký Nhận Tin</h1>
+    <p>Kéo chuột xuống, Bạn click vào biểu tượng quả chuông góc trái bên dưới (hoặc click vào đây <a href="#" id="subscribe-link">ĐĂNG KÝ NHẬN TIN</a>) sau đó ấn Cho Phép nhận tin tức mới nhé, mỗi khi báo có tin nóng và nhiều lượt đọc nhất chúng tôi sẽ thông báo cho các bạn qua thông báo hiện ở góc phải dưới màn hình</p>
+</div>
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
 <script>
     var OneSignal = window.OneSignal || [];
     OneSignal.push(["init", {
         appId: "d33eb61e-6b59-4087-a47e-76c762641c3b",
-        autoRegister: false,
+        autoRegister: true,
         notifyButton: {
             enable: true, /* Required to use the notify button */
             size: 'large', /* One of 'small', 'medium', or 'large' */
@@ -44,9 +46,40 @@
             acceptButtonText: "Cho Phép",
             /* cancelButtonText limited to 15 characters */
             cancelButtonText: "Không"
+        },
+        httpPermissionRequest: {
+        modalTitle: 'Cảm ơn bạn đã theo dõi',
+        modalMessage: "Bạn đã đăng ký nhận tin, bản có thể bỏ đăng ký nhận tin bất kỳ lúc nào.",
+        modalButtonText: 'Thoát'
+            /* ... */
         }
     }]);
 </script>
+<script>
+    function subscribe() {
+        OneSignal.push(["registerForPushNotifications"]);
+        event.preventDefault();
+    }
+
+    var OneSignal2 = OneSignal2 || [];
+    /* This example assumes you've already initialized OneSignal */
+    OneSignal2.push(function () {
+        // If we're on an unsupported browser, do nothing
+        if (!OneSignal2.isPushNotificationsSupported()) {
+            return;
+        }
+        OneSignal2.isPushNotificationsEnabled(function (isEnabled) {
+            if (isEnabled) {
+                // The user is subscribed to notifications
+                // Don't show anything
+            } else {
+                document.getElementById("subscribe-link").addEventListener('click', subscribe);
+                document.getElementById("subscribe-link").style.display = '';
+            }
+        });
+    });
+</script>
+
 <script data-cfasync="false">
     window.OneSignal = window.OneSignal || [];
 

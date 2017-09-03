@@ -39,7 +39,7 @@
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     @if (Model.status == 0) { 
                         <h1>@Model.name</h1>                    
-                        <p><span class="datetime">Ngày @Model.date_time.Value.Day/@Model.date_time.Value.Month/@Model.date_time.Value.Year @Model.time</span></p>
+                        <p><span class="datetime">Ngày @String.Format("{0:dd/MM/yyyy hh:mm tt}", @Model.date_time)</span></p>
                         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
                         <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a>, @Model.loads lượt xem</p>
                     }

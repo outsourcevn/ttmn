@@ -108,6 +108,10 @@ namespace TinTucMoiNhat
             }
             return d1;
         }
+        //public static string formatDateTime()
+        //{
+
+        //}
         public static DateTime? toDateTime(string d)
         {
             //if (d.Contains("GMT")) d = d.Replace("GMT", "");

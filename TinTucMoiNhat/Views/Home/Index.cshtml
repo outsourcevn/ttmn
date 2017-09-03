@@ -224,7 +224,7 @@
                                     <span>@TinTucMoiNhat.Config.getHost(item.link)</span>
                                     <div class="date-feat">
                                         <i class="fa fa-clock-o"></i>
-                                        @item.date_time
+                                        @String.Format("{0:dd/MM/yyyy hh:mm tt}", @item.date_time)
                                     </div>
                                     <h5 style="color:#ffffff;">@item.name</h5>
                                 </div>
@@ -276,7 +276,7 @@
                                     <div class="stuff_article_inner">
                                         @if (item.pdf!=null) {<span class="stuff_date"><a href="@item.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span>}
                                         <h2><a href="@link">@item.name</a></h2>
-                                        <p>lúc @item.date_time</p>
+                                        <p>lúc @String.Format("{0:dd/MM/yyyy hh:mm tt}", @item.date_time)</p>
                                     </div>
                                 </div>
                             </div>
