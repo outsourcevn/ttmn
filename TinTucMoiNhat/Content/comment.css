@@ -31,7 +31,7 @@ body {
  =======================*/
 .comments-container {
 	margin: 60px auto 15px;
-	width: 100%;
+	width: 768px;
 }
 
 .comments-container h1 {
@@ -262,5 +262,44 @@ body {
 
 	.reply-list .comment-box {
 		width: 320px;
+	}
+}
+@media only screen and (max-width: 375px) {
+	.comments-container {
+		width: 100%;
+	}
+
+	.comments-list .comment-box {
+		width: 100%;
+	}
+
+	.reply-list .comment-box {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 414px) {
+	.comments-container {
+		width: 100%;
+	}
+
+	.comments-list .comment-box {
+		width: 100%;
+	}
+
+	.reply-list .comment-box {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 360px) {
+	.comments-container {
+		width: 100%;
+	}
+
+	.comments-list .comment-box {
+		width: 100%;
+	}
+
+	.reply-list .comment-box {
+		width: 100%;
 	}
 }
