@@ -14,6 +14,22 @@
           <Property Name="url" Type="nvarchar" MaxLength="255" />
           <Property Name="id_channel" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="comments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="150" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="date_id" Type="int" />
+          <Property Name="news_id" Type="bigint" />
+          <Property Name="post_id" Type="bigint" />
+          <Property Name="full_content" Type="ntext" />
+          <Property Name="status" Type="int" />
+          <Property Name="parent_id" Type="bigint" />
+        </EntityType>
         <EntityType Name="locations">
           <Key>
             <PropertyRef Name="id" />
@@ -115,6 +131,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="photos" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="videos">
           <Key>
@@ -161,6 +178,7 @@
         </EntityType>
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="channel" EntityType="Self.channel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news_business" EntityType="Self.news_business" Schema="dbo" store:Type="Tables" />
@@ -205,8 +223,9 @@
           <EntitySet Name="news_business" EntityType="tintucmoinhatModel.news_business" />
           <EntitySet Name="weathers" EntityType="tintucmoinhatModel.weather" />
           <EntitySet Name="weather_code" EntityType="tintucmoinhatModel.weather_code" />
-          <EntitySet Name="profiles" EntityType="tintucmoinhatModel.profile" />
           <EntitySet Name="notifications" EntityType="tintucmoinhatModel.notification" />
+          <EntitySet Name="profiles" EntityType="tintucmoinhatModel.profile" />
+          <EntitySet Name="comments" EntityType="tintucmoinhatModel.comment" />
         </EntityContainer>
         <EntityType Name="page">
           <Key>
@@ -323,16 +342,6 @@
           <Property Name="code" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="profile">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="notification">
           <Key>
             <PropertyRef Name="id" />
@@ -342,6 +351,33 @@
           <Property Name="id_posts" Type="Int64" />
           <Property Name="date_time" Type="DateTime" Precision="3" />
           <Property Name="date_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photos" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="user_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="news_id" Type="Int64" />
+          <Property Name="post_id" Type="Int64" />
+          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="parent_id" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -492,9 +528,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="id_posts" ColumnName="id_posts" />
+                <ScalarProperty Name="id_news" ColumnName="id_news" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="profiles">
             <EntityTypeMapping TypeName="tintucmoinhatModel.profile">
               <MappingFragment StoreEntitySet="profiles">
+                <ScalarProperty Name="photos" ColumnName="photos" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -503,13 +551,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="notifications">
-            <EntityTypeMapping TypeName="tintucmoinhatModel.notification">
-              <MappingFragment StoreEntitySet="notifications">
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.comment">
+              <MappingFragment StoreEntitySet="comments">
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="full_content" ColumnName="full_content" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
                 <ScalarProperty Name="date_id" ColumnName="date_id" />
                 <ScalarProperty Name="date_time" ColumnName="date_time" />
-                <ScalarProperty Name="id_posts" ColumnName="id_posts" />
-                <ScalarProperty Name="id_news" ColumnName="id_news" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

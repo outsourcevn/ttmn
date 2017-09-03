@@ -357,6 +357,9 @@
     <Compile Include="Models\channel.cs">
       <DependentUpon>ttmn.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\comment.cs">
+      <DependentUpon>ttmn.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\location.cs">
       <DependentUpon>ttmn.tt</DependentUpon>
@@ -455,6 +458,7 @@
     <Content Include="Content\assets\js\wow.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\comment.css" />
     <Content Include="Content\images\100x100.jpg" />
     <Content Include="Content\images\addbanner_728x90_V1.jpg" />
     <Content Include="Content\images\arrow_icon_yellow.png" />
@@ -682,6 +686,8 @@
     <Content Include="Views\Home\Weather.cshtml" />
     <Content Include="Views\Home\TopWeather.cshtml" />
     <Content Include="Views\Home\Subcribe.cshtml" />
+    <Content Include="Views\Home\listCommentNews.cshtml" />
+    <Content Include="Views\Home\listCommentFacebook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

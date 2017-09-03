@@ -3,7 +3,7 @@
     ViewBag.Title = "Đăng ký nhận tin tức mới nhất";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-12" style="min-height:500px;">
+<div class="col-md-12" style="min-height:200px;">
     <h1>Đăng Ký Nhận Tin</h1>
     <p>Kéo chuột xuống, Bạn click vào biểu tượng quả chuông góc trái bên dưới (hoặc click vào đây <a href="#" id="subscribe-link">ĐĂNG KÝ NHẬN TIN</a>) sau đó ấn Cho Phép nhận tin tức mới nhé, mỗi khi báo có tin nóng và nhiều lượt đọc nhất chúng tôi sẽ thông báo cho các bạn qua thông báo hiện ở góc phải dưới màn hình</p>
 </div>
@@ -13,6 +13,9 @@
     OneSignal.push(["init", {
         appId: "d33eb61e-6b59-4087-a47e-76c762641c3b",
         autoRegister: true,
+        httpPermissionRequest: {
+            enable: true
+        },
         notifyButton: {
             enable: true, /* Required to use the notify button */
             size: 'large', /* One of 'small', 'medium', or 'large' */

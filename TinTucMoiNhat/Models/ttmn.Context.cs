@@ -34,7 +34,8 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<news_business> news_business { get; set; }
         public virtual DbSet<weather> weathers { get; set; }
         public virtual DbSet<weather_code> weather_code { get; set; }
-        public virtual DbSet<profile> profiles { get; set; }
         public virtual DbSet<notification> notifications { get; set; }
+        public virtual DbSet<profile> profiles { get; set; }
+        public virtual DbSet<comment> comments { get; set; }
     }
 }

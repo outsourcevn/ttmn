@@ -30,49 +30,88 @@
         font-family: 'Tinos','Roboto';
         font-size: 20px;
     }
+    .widget-area {
+    background-color: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    float: left;
+    margin-top: 30px;
+    padding: 25px 30px;
+    position: relative;
+    width: 100%;
+    }
 </style>
-
+<link rel="stylesheet" type="text/css" href="~/Content/comment.css">
 <div class="container">
     <div class="row">
-        <div class=" col-sm-12 col-md-10 col-lg-6" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
+        <div class=" col-sm-12 col-md-10 col-lg-9" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
             <div class="row">
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
-                    @if (Model.status == 0) { 
-                        <h1>@Model.name</h1>                    
+                    @if (Model.status == 0)
+                    {
+                        <h1>@Model.name</h1>
                         <p><span class="datetime">Ngày @String.Format("{0:dd/MM/yyyy hh:mm tt}", @Model.date_time)</span></p>
                         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
                         <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a>, @Model.loads lượt xem</p>
                     }
                     @*<div style="text-align:center;">
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({
-                                google_ad_client: "ca-pub-3675973699329543",
-                                enable_page_level_ads: true
-                            });
-                        </script>
-                    </div>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-6575239088642506"
-                         data-ad-slot="5127071673"
-                         data-ad-format="auto"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>*@
-                   
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({
+                        google_ad_client: "ca-pub-3675973699329543",
+                        enable_page_level_ads: true
+                    });
+                </script>
+            </div>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-6575239088642506"
+                 data-ad-slot="5127071673"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>*@
+
                     <!-- // End Ad Tag -->
                     @*<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3962e99d-d796-4701-97de-c298745573bd"></script>*@
                     @*<iframe width="100%" height="250" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d00c1d56c&theme=2&p=3" frameborder="0" scrolling="no"></iframe>
-                    <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
-                        <h2>Quảng cáo</h2>
-                        <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
-                    </div>*@
+            <div class="single_blog_sidebar wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;width:100%;">
+                <h2>Quảng cáo</h2>
+                <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+            </div>*@
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
                     <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
+                    @*<div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>*@
+                    <div class="comments-container">
+                        <h1>Bình Luận</h1>
+                        <ul id="comments-list-@Model.id" class="comments-list">
+                            @{Html.RenderAction("listCommentNews", new { id = Model.id });}
+                        </ul>
+                    </div>
+                    <div class="widget-area no-padding blank">
+                        <div class="status-upload">
+                            <form>
+                                <textarea placeholder="Ý Kiến Của Bạn?" id="full_comment" class="form-control" style="width:100%;" rows="7"></textarea>
+                                @*<ul>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+                        </ul>*@
+                                <button type="button" class="btn btn-success green" onclick="sendcomment(@Model.id);"><i class="fa fa-share"></i> Gửi </button>
+                            </form>
+                        </div><!-- Status Upload  -->
+                    </div><!-- Widget Area -->
                 </div>
             </div>
         </div>
@@ -92,24 +131,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 col-lg-3" >
+        @*<div class="col-sm-6 col-md-3 col-lg-3" >
             <div class="row">
                 <div class="rightbar_content">
                     <div class="single_blog_sidebar wow fadeInUp">
                         <h2>Quảng cáo</h2>
                         <iframe width="100%" height="695" src="https://lap.lazada.com/banner/dynamic.php?banner_id=5997d122dd659&theme=3&p=6" frameborder="0" scrolling="no"></iframe>
-                        @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:300px;height:250px"
                              data-ad-client="ca-pub-6575239088642506"
                              data-ad-slot="8243327678"></ins>
                         <script>
                              (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>*@
+                        </script>
                         <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Liên hệ đặt banner quảng cáo</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
                         
                     </div>
-                    @*<div class="single_blog_sidebar wow fadeInUp">
+                    <div class="single_blog_sidebar wow fadeInUp">
                         <h2>Đọc Nhiều Nhất</h2>
                         <ul class="middlebar_nav wow">
                             @foreach (var item in ViewBag.ppl)
@@ -118,12 +157,47 @@
                                 <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt=""></a><a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                         </ul>
-                    </div>*@
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </div>*@
     </div>
+</div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div class="row" style="width:75%;top:25%;left:12%;background:#f4f4f4;color:#000000;position:fixed;padding-left:5px;padding-right:5px;text-align:left;display:none;z-index:1002;" id="dv_user_comment">
+    <span onclick="$('#dv_user_comment').hide();" style="display:block;position:absolute;float:right;cursor:pointer;width:100%;">X</span>
+    <div style="width:100%;text-align:center;color:#000000;" class="standardcss"><h2 id="driverphone">Gửi bình luận</h2></div>
+    <div>
+        <form class="form-horizontal" action="/News/Comment" method="post" id="smcontent">
+            <fieldset>
+                <legend class="text-center">Thông tin</legend>
+                <input id="full_content" name="full_content" type="hidden"/>
+                <input id="id_news" name="id_news" type="hidden" />
+                <!-- Name input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="name">Tên</label>
+                    <div class="col-md-9">
+                        <input id="user_name" name="user_name" type="text" placeholder="Gõ tên bạn" class="form-control">
+                    </div>
+                </div>
+                <!-- Email input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="email">E-mail</label>
+                    <div class="col-md-9">
+                        <input id="user_email" name="user_email" type="text" placeholder="Nhập email" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="email">Click để Xác nhận</label>
+                    <div class="col-md-9">
+                        <div class="g-recaptcha" data-sitekey="6LegNS8UAAAAANtQJISgU8vOUhomC26nOARvds-h"></div>
+                    </div>
+                </div>
+                <input type="button" value="Hoàn Tất" class="btn btn-primary btn-block" onclick="submitcomment();" style="margin-bottom:5px;" />
+            </fieldset>
+        </form>
+    </div>
+    
 </div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
@@ -141,6 +215,35 @@
     } else {
         $("img").css("max-width", "310px");
         $("video").css("max-width", "310px");
+    }
+</script>
+<script>
+    var id_news = 0;
+    var full_content="";
+    function sendcomment(id) {
+        id_news = id;
+        full_content = document.getElementById('full_comment').value.replace(/(\r\n|\n|\r)/gm, "");
+        $('#full_content').val(full_content);
+        $('#id_news').val(id_news);
+        $('#dv_user_comment').show();
+    }
+    function submitcomment() {
+        if (full_content == "") {
+            alert("Nhập nội dung bình luận!");
+            $('#dv_user_comment').hide();
+            return;
+        }
+        if ($('#user_email').val() == "") {
+            alert("Nhập email!");
+            document.getElementById("user_email").focus();
+            return;
+        }
+        if ($('#user_name').val() == "") {
+            alert("Nhập tên bạn!");
+            document.getElementById("user_name").focus();
+            return;
+        }
+        document.getElementById("smcontent").submit();
     }
 </script>
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>

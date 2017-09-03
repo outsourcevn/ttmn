@@ -229,7 +229,7 @@
                                     <h5 style="color:#ffffff;">@item.name</h5>
                                 </div>
                         </div>
-                        <img src="@item.image" style="height:300px;" onclick="gotolink('@link')"/>                      
+                        <img src="@item.image" alt="@item.name" style="height:300px;" onclick="gotolink('@link')"/>                      
                     </div>
                 </div>
                 if (count >= 10) { break; }
@@ -269,7 +269,7 @@
                         if (count <= 10) { continue; }
                         var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
                         <div class="single_stuff wow fadeInDown" style="min-height:250px;">
-                            <div class="single_stuff_img"> <a href="@link"><img src="@item.image" style="max-height:350px;width:100%;"></a> </div>
+                            <div class="single_stuff_img"> <a href="@link"><img src="@item.image" style="max-height:350px;width:100%;" alt="@item.name"></a> </div>
                             <div class="single_stuff_article">
                                 <div class="single_sarticle_inner">
                                     <a class="stuff_category" href="#">@TinTucMoiNhat.Config.getHost(item.link)</a>

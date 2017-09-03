@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using TinTucMoiNhat.Models;
 using PagedList;
+using Newtonsoft.Json.Linq;
+using System.Web.Script.Serialization;
+using System.IO;
+using System.Text;
 namespace TinTucMoiNhat.Controllers
 {
     public class newsController : Controller
@@ -151,6 +155,145 @@ namespace TinTucMoiNhat.Controllers
             catch
             {
                 return "0";
+            }
+        }
+        [HttpPost]
+        public string Comment(string full_content, long id_news, string user_email, string user_name)
+        {
+            var response = Request["g-recaptcha-response"];
+            string secretKey = "6LegNS8UAAAAAMBmlZqhNUxfN3mG5_n31T5azTcn";
+            var client = new WebClient();
+            var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+            var obj = JObject.Parse(result);
+            var status = (bool)obj.SelectToken("success");
+            ViewBag.Message = status ? "Gửi bình luận thành công <a href='#' onclick='javascript:window.history.go(-1);'>Quay lại</a>" : "Gửi không thành công do server phát hiện Bạn chưa click để xác nhận không phải là robot gửi tự động <a href='#' onclick='javascript:window.history.go(-1);'>Quay lại</a>!";
+            if (status)
+            {
+                comment bl = new comment();
+                bl.date_id = Config.datetimeid();
+                bl.date_time = DateTime.Now;
+                bl.full_content = full_content;
+                bl.news_id = id_news;
+                bl.status = 0;
+                bl.user_email = user_email;
+                bl.user_name = user_name;
+                if (Config.getCookie("user_id") != "")
+                {
+                    bl.user_id = long.Parse(Config.getCookie("user_id"));
+                }
+                db.comments.Add(bl);
+                db.SaveChanges();
+                Notification(0, id_news, user_name,full_content);
+            }
+            else
+            {
+
+            }
+            return ViewBag.Message;
+        }
+        [HttpPost]
+        public string Comment2(string full_content, long id_news, string user_email, string user_name)
+        {
+            var response = Request["g-recaptcha-response"];
+            string secretKey = "6LegNS8UAAAAAMBmlZqhNUxfN3mG5_n31T5azTcn";
+            var client = new WebClient();
+            var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+            var obj = JObject.Parse(result);
+            var status = (bool)obj.SelectToken("success");
+            ViewBag.Message = status ? "Gửi bình luận thành công <a href='#' onclick='javascript:window.history.go(-1);'>Quay lại</a>" : "Gửi không thành công do server phát hiện Bạn chưa click để xác nhận không phải là robot gửi tự động <a href='#' onclick='javascript:window.history.go(-1);'>Quay lại</a>!";
+            if (status)
+            {
+                comment bl = new comment();
+                bl.date_id = Config.datetimeid();
+                bl.date_time = DateTime.Now;
+                bl.full_content = full_content;
+                bl.post_id = id_news;
+                bl.status = 0;
+                bl.user_email = user_email;
+                bl.user_name = user_name;
+                if (Config.getCookie("user_id") != "")
+                {
+                    bl.user_id = long.Parse(Config.getCookie("user_id"));
+                }
+                db.comments.Add(bl);
+                db.SaveChanges();
+                Notification(1, id_news, user_name, full_content);
+            }
+            else
+            {
+
+            }
+            return ViewBag.Message;
+        }
+        public string Notification(int type,long id,string user_name,string full_content)
+        {
+            try
+            {
+               
+                string link = "http://tintucmoinhat.vn";
+                string sheadings = user_name;
+                string push_content = full_content;
+                if (type == 0)
+                {
+                    var ne = db.news.Find(id);
+                    link = "http://tintucmoinhat.vn/" + Config.getCatName(ne.cat_id) + "/" + Config.unicodeToNoMark(ne.name) + "-" + ne.id;
+                    push_content = full_content;// + " " + link
+                    sheadings = user_name;
+
+                }
+                else
+                {
+                    var ne = db.posts.Find(id);
+                    link = "http://tintucmoinhat.vn/fanpost/bai-viet/" + Config.unicodeToNoMark(ne.domain_name) + "-" + ne.id;
+                    push_content = full_content;
+                    sheadings = user_name;
+                }
+                var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
+                request.KeepAlive = true;
+                request.Method = "POST";
+                request.ContentType = "application/json; charset=utf-8";
+
+                request.Headers.Add("authorization", "Basic MjI5ODQ5MzgtN2M2OC00MGVhLWIzNTgtNmMzYjA3M2VkZDhj");
+
+                var serializer = new JavaScriptSerializer();
+                var obj = new
+                {
+                    app_id = "d33eb61e-6b59-4087-a47e-76c762641c3b",
+                    contents = new { en = push_content },
+                    url = link,
+                    headings = new { en = sheadings },
+                    included_segments = new string[] { "All" }
+                };// headings=sheadings,
+                var param = serializer.Serialize(obj);
+                byte[] byteArray = Encoding.UTF8.GetBytes(param);
+
+                string responseContent = null;
+
+                try
+                {
+                    using (var writer = request.GetRequestStream())
+                    {
+                        writer.Write(byteArray, 0, byteArray.Length);
+                    }
+
+                    using (var response = request.GetResponse() as HttpWebResponse)
+                    {
+                        using (var reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            responseContent = reader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (WebException ex)
+                {
+                    return ex.Message;
+
+                }
+                return responseContent;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
             }
         }
     }
