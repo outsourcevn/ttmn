@@ -12,7 +12,7 @@ namespace TinTucMoiNhat.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class tintucmoinhatEntities : DbContext
     {
         public tintucmoinhatEntities()
@@ -25,7 +25,6 @@ namespace TinTucMoiNhat.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<news> news { get; set; }
         public virtual DbSet<page> pages { get; set; }
         public virtual DbSet<channel> channels { get; set; }
         public virtual DbSet<video> videos { get; set; }
@@ -35,7 +34,8 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<weather> weathers { get; set; }
         public virtual DbSet<weather_code> weather_code { get; set; }
         public virtual DbSet<notification> notifications { get; set; }
-        public virtual DbSet<profile> profiles { get; set; }
         public virtual DbSet<comment> comments { get; set; }
+        public virtual DbSet<profile> profiles { get; set; }
+        public virtual DbSet<news> news { get; set; }
     }
 }

@@ -407,3 +407,59 @@
         </div>*@
     </div>
 </div>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+        appId: "d33eb61e-6b59-4087-a47e-76c762641c3b",
+        autoRegister: true, /* Set to true to automatically prompt visitors */
+        httpPermissionRequest: {
+            enable: true,
+            modalTitle: 'Cảm ơn bạn đã theo dõi trang tin tức',
+            modalMessage: "Bạn đã ấn vào theo dõi, bạn cũng có thể bỏ theo dõi bất cứ khi nào.",
+            modalButtonText: 'Thoát'
+        },
+        notifyButton: {
+            enable: true /* Set to false to hide */,
+            position: 'bottom-left',
+            text: {
+                'tip.state.unsubscribed': 'Theo dõi tin tức',
+                'tip.state.subscribed': "Bạn đã theo dõi tin tức",
+                'tip.state.blocked': "Bạn bị chặn theo dõi tin tức",
+                'message.prenotify': 'Click để theo dõi tin tức',
+                'message.action.subscribed': "Cảm ơn bạn đã theo dõi trang tin tức!",
+                'message.action.resubscribed': "Bạn đã theo dõi tin tức",
+                'message.action.unsubscribed': "Bạn sẽ không nhận được thông báo tin tức nữa",
+                'dialog.main.title': 'Quản Lý Thông Báo',
+                'dialog.main.button.subscribe': 'Theo Dõi Tin Tức',
+                'dialog.main.button.unsubscribe': 'Bỏ Theo Dõi Tin Tức',
+                'dialog.blocked.title': 'Bỏ theo dõi tin tức',
+                'dialog.blocked.message': "Làm theo hướng dẫn để theo dõi tin tức:"
+            }
+        },
+        welcomeNotification: {
+            "title": "Đăng ký nhận tin mới nhất",
+            "message": "Chúng tôi sẽ gửi tin mới nhất trong ngày cho bạn",
+            /*"url": "",  Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+        },
+        promptOptions: {
+            /* Change bold title, limited to 30 characters */
+            siteName: 'Tin Tức Mới Nhất',
+            /* Subtitle, limited to 90 characters */
+            actionMessage: "Chúng tôi mong muốn mang đến cho bạn tin tức mới và hay nhất.",
+            /* Example notification title */
+            exampleNotificationTitle: 'Theo Dõi Tin Tức Hàng Ngày',
+            /* Example notification message */
+            exampleNotificationMessage: 'Bạn chọn vào cho phép nhé',
+            /* Text below example notification, limited to 50 characters */
+            exampleNotificationCaption: 'Bạn có thể bỏ theo dõi bất kỳ lúc nào',
+            /* Accept button text, limited to 15 characters */
+            acceptButtonText: "CHO PHÉP",
+            /* Cancel button text, limited to 15 characters */
+            cancelButtonText: "Không, Cảm ơn"
+        }
+    }]);
+    //OneSignal.push(function () {
+    //    OneSignal.registerForPushNotifications();
+    //});
+</script>

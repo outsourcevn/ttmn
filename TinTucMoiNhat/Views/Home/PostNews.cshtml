@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Gửi link website";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12" style="min-height:200px;">
+    <h1 style="text-align:center;">Thành Viên Gửi Bài</h1>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="row" style="width:75%;top:25%;left:12%;background:#f4f4f4;color:#000000;position:relative;padding-left:5px;padding-right:5px;text-align:left;display:block;z-index:1002;" id="dv_user_comment">
+        
+        <div style="width:100%;text-align:center;color:#000000;" class="standardcss"><h2 id="driverphone">Lưu ý</h2><p>Bạn copy link bài viết từ website khác vào đây, link này phải đảm bảo có nội dung, ảnh đầy đủ, chúng tôi sẽ từ chối nếu nội dung hoặc đường link chứa những điều chưa phù hợp (Như nội dung sơ sài, phản cảm, nội dung có tính chất đi ngược lại những quy định pháp luật cấm)</p></div>
+        <div>
+            <form class="form-horizontal" action="/Home/SubmitPostNews" method="post" id="register">
+                <fieldset>
+                    <legend class="text-center">Thông tin</legend>
+                    <input id="user_id" name="user_id" type="hidden" value="@ViewBag.user_id" />
+                    <!-- Name input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Link</label>
+                        <div class="col-md-9">
+                            <input id="link" name="link" type="text" placeholder="Copy đường link website vào đây" class="form-control" onblur="checkDuplicateNews();">
+                        </div>
+                    </div>
+                    <!-- Email input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Danh Mục</label>
+                        <div class="col-md-9">
+                            <select class="form-control" id="cat_id" name="cat_id">
+                                <option value="-1" selected>Chọn Danh Mục</option>
+                                <option value="0">Tin nóng</option>
+                                <option value="1">Thế giới</option>
+                                <option value="2">Kinh doanh</option>
+                                <option value="3">Giải trí</option>
+                                <option value="4">Thể thao</option>
+                                <option value="999">Tâm sự</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Click để Xác nhận</label>
+                        <div class="col-md-9">
+                            <div class="g-recaptcha" data-sitekey="6LegNS8UAAAAANtQJISgU8vOUhomC26nOARvds-h"></div>
+                        </div>
+                    </div>
+                    <input type="button" value="GỬI LINK" class="btn btn-primary btn-block" onclick="submitcomment();" style="margin-bottom:5px;" id="btnsubmit" />
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script>
+    function submitcomment() {
+        if ($('#link').val() == "") {
+            alert("Nhập link!");
+            document.getElementById("link").focus();
+            return;
+        }
+        if ($('#cat_id').val() == "-1") {
+            alert("Chọn danh mục!");
+            document.getElementById("cat_id").focus();
+            return;
+        }
+        document.getElementById("register").submit();
+        document.getElementById("btnsubmit").value = "ĐANG XỬ LÝ XIN ĐỢI...";
+        document.getElementById("btnsubmit").disabled = true;
+    }
+    function checkDuplicateNews() {
+        if ($('#link').val() == "") {
+            alert("Nhập link!");
+            document.getElementById("link").focus();
+            return;
+        }
+            $.ajax({
+                url: "/News/checkDuplicateNews", type: 'post',
+                data: { link: $("#link").val()},
+                success: function (rs) {
+                    //alert(rs);
+                    if (rs == "True") {
+                        alert("Đã có link " + $("#link").val() + " này rồi, bạn chọn link khác");
+                        document.getElementById("link").focus();
+                    } else {
+
+                    }
+                }
+            });
+       
+    }
+</script>
+

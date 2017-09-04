@@ -13,6 +13,41 @@ namespace TinTucMoiNhat
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+                "web to pdf",
+                "web-to-pdf-converter",
+                new { controller = "Home", action = "WebToPdfConverter"}
+            );
+            routes.MapRoute(
+                "Qr Code",
+                "qr-code-generator",
+                new { controller = "Home", action = "QrCodeGenerator" }
+            );
+            routes.MapRoute(
+                "LogOff",
+                "LogOff",
+                new { controller = "Home", action = "LogOff" }
+            );
+            routes.MapRoute(
+                "Login",
+                "Login",
+                new { controller = "Home", action = "Login" }
+            );
+            routes.MapRoute(
+                "gui bai",
+                "gui-bai",
+                new { controller = "Home", action = "PostNews" }
+            );
+            routes.MapRoute(
+                "dang ky nhan tin",
+                "dang-ky-nhan-tin",
+                new { controller = "Home", action = "Subcribe" }
+            );
+            routes.MapRoute(
+                "dang ky thanh vien",
+                "dang-ky-thanh-vien",
+                new { controller = "Home", action = "Register"}
+            );
+            routes.MapRoute(
                 "thoi tiet",
                 "du-bao-thoi-tiet/{location}/{dateid}",
                 new { controller = "Home", action = "Weather", location = UrlParameter.Optional, dateid = UrlParameter.Optional}

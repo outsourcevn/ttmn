@@ -20,5 +20,8 @@ namespace TinTucMoiNhat.Models
         public string phone { get; set; }
         public string pass { get; set; }
         public string photos { get; set; }
+        public Nullable<int> likes { get; set; }
+        public Nullable<int> points { get; set; }
+        public Nullable<int> rate { get; set; }
     }
 }

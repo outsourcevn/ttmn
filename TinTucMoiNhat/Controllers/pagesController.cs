@@ -21,9 +21,11 @@ namespace TinTucMoiNhat.Controllers
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Account");
             return View(db.pages.OrderByDescending(o=>o.id).ToList());
         }
-        public ActionResult Login(string pass)
+        public ActionResult Login(string phone, string pass)
         {
-            if (pass == "abc123")
+            pass = Config.GetMd5Hash(pass);
+
+            if (phone=="0979776427" && db.profiles.Any(o => o.phone == phone && o.pass == pass))
             {
                 Config.setCookie("logged", "1");
                 return RedirectToAction("Index");

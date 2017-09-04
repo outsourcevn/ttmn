@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Qr code generator - Công cụ tạo qr code online ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section metatags {
+    <meta name="description" content="qr code, qr code generator, scan qr code, qr code maker, create qr code, qr code creator, tạo qr code, tạo mã qr, tạo mã vạch">
+    <meta name="keywords" content="qr code, qr code generator, scan qr code, qr code maker, create qr code, qr code creator, tạo qr code, tạo mã qr, tạo mã vạch">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow,noodp">
+    <meta property="fb:app_id" content="1930351307185969" />
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="Công cụ">
+    <meta property="og:url" content="http://tintucmoinhat.vn/qr-code-generator">
+    <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+    <meta property="og:description" content="qr code, qr code generator, scan qr code, qr code maker, create qr code, qr code creator, tạo qr code, tạo mã qr, tạo mã vạch">
+    <meta property="og:image" itemprop="thumbnailUrl" content="http://tintucmoinhat.vn/images/qrcode.jpg">
+}
+<div class="col-md-12" style="min-height:200px;">
+    <h1 style="text-align:center;">Qr code generator - Công cụ tạo qr code online</h1>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="row" style="width:75%;top:25%;left:12%;background:#f4f4f4;color:#000000;position:relative;padding-left:5px;padding-right:5px;text-align:left;display:block;z-index:1002;" id="dv_user_comment">
+
+        <div style="width:100%;text-align:center;color:#000000;" class="standardcss"><h2 id="driverphone">Lưu ý</h2><p>Bạn chỉ cần nhập nội dung cần mã hóa qr code vào ô bên dưới, công cụ sẽ sinh ra file ảnh, click chuột phải lên ảnh chọn Lưu về (Save Image As)</p></div>
+        <div>
+            <form class="form-horizontal" action="/Home/SubmitQrCodeGenerator" method="post" id="register">
+                <fieldset>
+                    <legend class="text-center">Thông tin</legend>
+                    <!-- Name input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Nhập nội dung cần mã hóa</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" style="width:100%;" rows="5" id="qr_content"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Ảnh Qr Code</label>
+                        <div class="col-md-9">
+                            <img src="/images/qrcode.jpg" id="imgdl" style="text-align:center;width:330px;height:330px;float:initial;" class="form-control" />
+                            @*<input class="form-control" type="button" value="Download" onclick="download();">*@
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Click để Xác nhận</label>
+                        <div class="col-md-9">
+                            <div class="g-recaptcha" data-sitekey="6LegNS8UAAAAANtQJISgU8vOUhomC26nOARvds-h"></div>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="button" value="CREATE QR CODE" class="btn btn-primary btn-block" onclick="generate();" style="margin-bottom:5px;text-align:center;" id="btnsubmit" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script>
+    function generate() {
+        if ($('#qr_content').val() == "") {
+            alert("Nhập nội dung cần mã hóa!");
+            document.getElementById("qr_content").focus();
+            return;
+        }
+        document.getElementById("btnsubmit").value = "ĐANG XỬ LÝ XIN ĐỢI...";
+        document.getElementById("btnsubmit").disabled = true;
+        $.ajax({
+            url: "/Home/generateQrCode", type: 'post',
+            data: { qr_content: $("#qr_content").val() },
+            success: function (rs) {
+                if (rs != '') {
+                    //alert(rs);
+                    $("#imgdl").attr("src", rs);
+                    document.getElementById("btnsubmit").disabled = false;
+                    document.getElementById("btnsubmit").value = "CREATE QR CODE";
+                } else {
+                    alert("Lỗi không convert được");
+                    document.getElementById("btnsubmit").disabled = false;
+                    document.getElementById("btnsubmit").value = "CREATE QR CODE";
+                }
+            }
+        })
+    }
+</script>
+

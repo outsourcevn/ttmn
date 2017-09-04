@@ -5,6 +5,11 @@ using System.Text.RegularExpressions;
 using System.Web;
 using TinTucMoiNhat.Models;
 using System.Linq;
+using System.Text;
+using System.Security.Cryptography;
+using System.Net;
+using System.Web.Script.Serialization;
+using System.IO;
 namespace TinTucMoiNhat
 {
     public class Config
@@ -410,6 +415,26 @@ namespace TinTucMoiNhat
                 return "Dự báo: chưa có thông tin";
             }
         }
+        public static string GetMd5Hash(string input)
+        {
+            MD5 md5Hash = MD5.Create();
+            // Convert the input string to a byte array and compute the hash. 
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes 
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data  
+            // and format each one as a hexadecimal string. 
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string. 
+            return sBuilder.ToString();
+        }
         public static string getDayOfWeek(DateTime day)
         {
             try
@@ -503,6 +528,68 @@ namespace TinTucMoiNhat
         public static string removeHtml(string source)
         {
             return Regex.Replace(source, "<.*?>", string.Empty);
+        }
+        public static string Push(string link, string sheadings, string push_content)
+        {
+            try
+            {
+                var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
+                request.KeepAlive = true;
+                request.Method = "POST";
+                request.ContentType = "application/json; charset=utf-8";
+
+                request.Headers.Add("authorization", "Basic MjI5ODQ5MzgtN2M2OC00MGVhLWIzNTgtNmMzYjA3M2VkZDhj");
+
+                var serializer = new JavaScriptSerializer();
+                var obj = new
+                {
+                    app_id = "d33eb61e-6b59-4087-a47e-76c762641c3b",
+                    contents = new { en = push_content },
+                    url = link,
+                    headings = new { en = sheadings },
+                    android_accent_color = "FFFF0000",
+                    included_segments = new string[] { "All" }
+                };// headings=sheadings,
+                var param = serializer.Serialize(obj);
+                byte[] byteArray = Encoding.UTF8.GetBytes(param);
+
+                string responseContent = null;
+
+                try
+                {
+                    using (var writer = request.GetRequestStream())
+                    {
+                        writer.Write(byteArray, 0, byteArray.Length);
+                    }
+
+                    using (var response = request.GetResponse() as HttpWebResponse)
+                    {
+                        using (var reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            responseContent = reader.ReadToEnd();
+                        }
+                    }
+                }
+                catch (WebException ex)
+                {
+                    return ex.Message;
+
+                }
+                return responseContent;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        public static string getUserNameById(long? id)
+        {
+            try
+            {
+                return db.profiles.Find(id).name;
+            }catch{
+                return "Ban Biên Tập";
+            }
         }
     }
     

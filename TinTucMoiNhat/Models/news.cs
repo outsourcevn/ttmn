@@ -28,5 +28,6 @@ namespace TinTucMoiNhat.Models
         public string pdf { get; set; }
         public Nullable<int> status { get; set; }
         public Nullable<int> loads { get; set; }
+        public Nullable<long> user_id { get; set; }
     }
 }

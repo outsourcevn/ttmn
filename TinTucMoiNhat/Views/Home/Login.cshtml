@@ -1,9 +1,8 @@
-﻿@using TinTucMoiNhat.Models
-@model LoginViewModel
+﻿
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng Nhập Thành Viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="col-md-12" style="min-height:200px;">
     <h1 style="text-align:center;">Đăng Nhập Thành Viên</h1>
     <h2 style="color:red;text-align:center;">@ViewBag.message</h2>
@@ -12,7 +11,7 @@
         @*<span onclick="$('#dv_user_comment').hide();" style="display:block;position:absolute;float:right;cursor:pointer;width:100%;">X</span>*@
         <div style="width:100%;text-align:center;color:#000000;" class="standardcss"><h2 id="driverphone">Trở Thành Thành Viên Website</h2><p>Bạn sẽ được gửi tin quảng bá doanh nghiệp mình, bình luận các tin tức khác, tương tác với các thành viên khác</p></div>
         <div>
-            <form class="form-horizontal" action="/pages/Login" method="post" id="register">
+            <form class="form-horizontal" action="/Home/SubmitLogin" method="post" id="register">
                 <fieldset>
                     <legend class="text-center">Thông tin</legend>
                     <!-- Phone input-->
@@ -51,3 +50,4 @@
         document.getElementById("register").submit();
     }
 </script>
+

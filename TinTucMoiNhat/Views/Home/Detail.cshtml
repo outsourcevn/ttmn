@@ -61,6 +61,10 @@
                         <p><span class="datetime">Ngày @String.Format("{0:dd/MM/yyyy hh:mm tt}", @Model.date_time)</span></p>
                         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
                         <p>Nguồn bài báo: <a href="@Model.link" rel="nofollow">@Model.link</a>, @Model.loads lượt xem</p>
+                        if (Model.user_id != null)
+                        {
+                            <p>Người gửi link: @Config.getUserNameById(Model.user_id)</p>
+                        }
                     }
                     @*<div style="text-align:center;">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -177,14 +181,14 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="name">Tên</label>
                     <div class="col-md-9">
-                        <input id="user_name" name="user_name" type="text" placeholder="Gõ tên bạn" class="form-control">
+                        <input id="user_name" name="user_name" type="text" placeholder="Gõ tên bạn" class="form-control" value="@ViewBag.user_name">
                     </div>
                 </div>
                 <!-- Email input-->
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="email">E-mail</label>
                     <div class="col-md-9">
-                        <input id="user_email" name="user_email" type="text" placeholder="Nhập email" class="form-control">
+                        <input id="user_email" name="user_email" type="text" placeholder="Nhập email" class="form-control" value="@ViewBag.user_email">
                     </div>
                 </div>
                 <div class="form-group">
