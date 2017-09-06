@@ -42,10 +42,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="268" />
+          <Property Name="name" Type="nvarchar" MaxLength="551" />
           <Property Name="des" Type="ntext" />
           <Property Name="full_content" Type="ntext" />
-          <Property Name="image" Type="nvarchar" MaxLength="151" />
+          <Property Name="image" Type="nvarchar" MaxLength="551" />
           <Property Name="link" Type="nvarchar" MaxLength="551" />
           <Property Name="cat_id" Type="int" />
           <Property Name="keywords" Type="nvarchar" MaxLength="250" />
@@ -372,10 +372,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="268" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
           <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="151" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
           <Property Name="link" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
           <Property Name="cat_id" Type="Int32" />
           <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />

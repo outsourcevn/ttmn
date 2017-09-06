@@ -591,6 +591,13 @@ namespace TinTucMoiNhat
                 return "Ban Biên Tập";
             }
         }
+        public static void logFile(string val, string filename)
+        {
+            string path = "D:\\tintucmoinhat.vn\\";
+            StreamWriter sw = new StreamWriter(path + filename);
+            sw.WriteLine(val);
+            sw.Close();
+        }
     }
     
 }
