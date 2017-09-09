@@ -67,6 +67,10 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.name)
+                @if (item.status == 1)
+                {
+                    <span style="color:red;"><i>Chưa duyệt</i></span>
+                }
             </td>
             <td>
                 @Html.Raw(item.des)
@@ -100,7 +104,7 @@
                 @if (item.status == 0) { 
                     <button value="Gỡ Bài" onclick="hidepost(@item.id,1);">Gỡ bài</button>
                 }else{
-                    <button value="Hiện Bài" onclick="hidepost(@item.id,0);">Hiện bài</button>
+                    <button value="Hiện Bài" onclick="hidepost(@item.id,0);">Duyệt bài</button>
                 }
                 |
                 @Html.ActionLink("Sửa", "Sửa", new { id = item.id }) |

@@ -19,6 +19,7 @@ namespace TinTucMoiNhat.Controllers
         public ActionResult Index()
         {
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Account");
+            if (Config.getCookie("user_id") != "1") return RedirectToAction("Login", "Account");
             return View(db.pages.OrderByDescending(o=>o.id).ToList());
         }
         public ActionResult Login(string phone, string pass)
@@ -27,7 +28,12 @@ namespace TinTucMoiNhat.Controllers
 
             if (phone=="0979776427" && db.profiles.Any(o => o.phone == phone && o.pass == pass))
             {
+                var us = db.profiles.Where(o => o.phone == phone && o.pass == pass).FirstOrDefault();
                 Config.setCookie("logged", "1");
+                Config.setCookie("user_id", us.id.ToString());
+                Config.setCookie("user_name", us.name);
+                Config.setCookie("user_email", us.email);
+                Config.setCookie("user_phone", us.phone);
                 return RedirectToAction("Index");
             }
             else
@@ -60,6 +66,7 @@ namespace TinTucMoiNhat.Controllers
         public ActionResult Create()
         {
             if (Config.getCookie("logged") == "") return RedirectToAction("Login", "Account");
+            if (Config.getCookie("user_id") != "1") return RedirectToAction("Login", "Account");
             return View();
         }
 

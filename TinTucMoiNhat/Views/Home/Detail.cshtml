@@ -95,7 +95,7 @@
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
                     <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-                    @*<div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>*@
+                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
                     <div class="comments-container">
                         <h1>Bình Luận</h1>
                         <ul id="comments-list-@Model.id" class="comments-list">
