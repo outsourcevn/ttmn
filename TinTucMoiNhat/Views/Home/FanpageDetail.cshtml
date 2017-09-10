@@ -59,7 +59,7 @@
                 <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
                     <p><span class="datetime">Ngày @String.Format("{0:dd/MM/yyyy hh:mm tt}", @Model.date_post)</span></p>
                     @Html.Raw(TinTucMoiNhat.Config.embededPost(@Model.url, @Model.post_id, @Model.message, @Model.domain, @Model.domain_name, @Model.create_time))
-                    @if (Model.full_content != null) { 
+                    @if (Model.full_content != null && Model.status==0) { 
                         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.full_content))</p>
                         <p>Nguồn bài báo: <a href="@Model.full_link" rel="nofollow">@Model.full_link</a>, @Model.loads lượt xem</p>
                     }

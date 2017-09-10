@@ -33,5 +33,6 @@ namespace TinTucMoiNhat.Models
         public string full_content { get; set; }
         public string full_link { get; set; }
         public Nullable<int> loads { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

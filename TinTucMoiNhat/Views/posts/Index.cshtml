@@ -1,15 +1,15 @@
-﻿@model IEnumerable<TinTucMoiNhat.Models.news>
+﻿@model IEnumerable<TinTucMoiNhat.Models.post>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Danh sách tin tức</h2>
+<h2>Danh sách tin tức facebook</h2>
 <div class="col-md-12">
     <form id="searchForm">
-        <input type="text" class="form-control" placeholder="Từ khóa" id="keyword" ><select id="status" class="form-control"><option value="0">Đã duyệt</option><option value="1">Chưa duyệt</option></select>
-        <input type="button" class="form-control btn-default btn-info"  value="Tìm" onclick="search();">
+        <input type="text" class="form-control" placeholder="Từ khóa" id="keyword"><select id="status" class="form-control"><option value="0">Đã duyệt</option><option value="1">Chưa duyệt</option></select>
+        <input type="button" class="form-control btn-default btn-info" value="Tìm" onclick="search();">
     </form>
 </div>
 <script>
@@ -19,7 +19,7 @@
         //    alert("Nhập từ khóa");
         //    return;
         //}
-        window.location.href = "/news/index?keyword=" + document.getElementById("keyword").value + "&status=" + document.getElementById("status").value;
+        window.location.href = "/posts/index?keyword=" + document.getElementById("keyword").value + "&status=" + document.getElementById("status").value;
     }
 </script>
 
@@ -29,69 +29,51 @@
 <table class="table marginBottom0">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Tên 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.des)
+            domain
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.image)
+            Ảnh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.link)
+            Thời gian
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cat_id)
+           Ngày
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date_time)
+            Trạng thái
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pdf)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.loads)
+           Lượt xem
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+        var link = "/fanpost/bai-viet/" + TinTucMoiNhat.Config.unicodeToNoMark(item.domain_name) + "-" + item.id;
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                @Html.DisplayFor(modelItem => item.message)
                 @if (item.status == 1)
                 {
                     <span style="color:red;"><i>Chưa duyệt</i></span>
                 }
             </td>
             <td>
-                @Html.Raw(item.des)
+                @Html.Raw(item.link)
             </td>
             <td>
                 <img src="http://tintucmoinhat.vn/@item.image" style="width:100px;height:100px;">
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.link)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cat_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date_time)
+                @Html.DisplayFor(modelItem => item.date_post)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pdf)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.status)
@@ -101,7 +83,8 @@
             </td>
             <td>
                 <a href="@link">Chi tiết</a>|
-                @if (item.status == 0) { 
+                @if (item.status == 0)
+                {
                     <button value="Gỡ Bài" onclick="hidepost(@item.id,1);">Gỡ bài</button>
                 }
                 else
@@ -109,9 +92,9 @@
                     <button value="Duyệt Bài" onclick="hidepost(@item.id,0);">Duyệt bài</button>
                 }
                 |
-                @Html.ActionLink("Sửa","Edit", new { id = item.id }) |
+                @*@Html.ActionLink("Sửa", "Edit", new { id = item.id }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                
+
             </td>
         </tr>
     }
@@ -120,7 +103,7 @@
 <script>
     function hidepost(id,status) {
         $.ajax({
-            url: "/news/hidepost", type: 'post',
+            url: "/post/hidepost", type: 'post',
             data: { id: id, status:status},
             success: function (rs) {
                 if (rs == '1') {

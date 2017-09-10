@@ -28,7 +28,6 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<page> pages { get; set; }
         public virtual DbSet<channel> channels { get; set; }
         public virtual DbSet<video> videos { get; set; }
-        public virtual DbSet<post> posts { get; set; }
         public virtual DbSet<location> locations { get; set; }
         public virtual DbSet<news_business> news_business { get; set; }
         public virtual DbSet<weather> weathers { get; set; }
@@ -37,5 +36,6 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<profile> profiles { get; set; }
         public virtual DbSet<news> news { get; set; }
+        public virtual DbSet<post> posts { get; set; }
     }
 }
