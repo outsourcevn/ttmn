@@ -81,7 +81,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/CarPrice/Index"><i class="fa fa-product-hunt fa-fw"></i>Quản lý tin tức</a>
+                            <a href="/News/Index"><i class="fa fa-product-hunt fa-fw"></i>Quản lý tin tức</a>
+                        </li>
+                        <li>
+                            <a href="/Posts/Index"><i class="fa fa-product-hunt fa-fw"></i>Quản lý tin tức facebook</a>
+                        </li>
+                        <li>
+                            <a href="/Pages/Index"><i class="fa fa-product-hunt fa-fw"></i>Quản lý fanpage facebook</a>
                         </li>
                         <li>
                             <a href="javascript:document.getElementById('logoutForm').submit();"><i class="fa fa-home fa-fw"></i> Đăng Xuất</a>
@@ -92,7 +98,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <form id="logoutForm" action="@Url.Action("Logout","Admin")" method="post"></form>
+        <form id="logoutForm" action="@Url.Action("LogOff", "Home")" method="post"></form>
         <div id="page-wrapper">
             @RenderBody()
         </div>

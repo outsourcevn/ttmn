@@ -10,7 +10,7 @@
                 @foreach (var item in Model)
                 {
                     var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
-                    <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="@item.name"></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                    <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="@item.name" style="max-height:300px;"></a><a class="mbar_title" href="@link">@item.name</a> </li>
                 }
                 <li style="float:right"><a class="mbar_thubnail" href="/@ViewBag.catitemname-@ViewBag.catitemid/1" style="float:right">Xem Tiếp <span class="glyphicon glyphicon-menu-right"></span></a></li>
             </ul>

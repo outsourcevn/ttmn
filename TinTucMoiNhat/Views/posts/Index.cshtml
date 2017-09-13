@@ -8,7 +8,7 @@
 <h2>Danh sách tin tức facebook</h2>
 <div class="col-md-12">
     <form id="searchForm">
-        <input type="text" class="form-control" placeholder="Từ khóa" id="keyword"><select id="status" class="form-control"><option value="0">Đã duyệt</option><option value="1">Chưa duyệt</option></select>
+        <input type="text" class="form-control" placeholder="Từ khóa" id="keyword" value="@ViewBag.keyword"><select id="status" class="form-control"><option value="0">Đã duyệt</option><option value="1">Chưa duyệt</option></select>
         <input type="button" class="form-control btn-default btn-info" value="Tìm" onclick="search();">
     </form>
 </div>
@@ -67,7 +67,7 @@
                 @Html.Raw(item.link)
             </td>
             <td>
-                <img src="http://tintucmoinhat.vn/@item.image" style="width:100px;height:100px;">
+                <img src="@item.image" style="width:100px;height:100px;">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date_post)
@@ -103,7 +103,7 @@
 <script>
     function hidepost(id,status) {
         $.ajax({
-            url: "/post/hidepost", type: 'post',
+            url: "/posts/hidepost", type: 'post',
             data: { id: id, status:status},
             success: function (rs) {
                 if (rs == '1') {
