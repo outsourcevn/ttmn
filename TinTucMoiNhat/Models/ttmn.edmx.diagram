@@ -15,8 +15,8 @@
         <EntityTypeShape EntityType="tintucmoinhatModel.notification" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="tintucmoinhatModel.comment" Width="1.5" PointX="9.375" PointY="6.75" />
         <EntityTypeShape EntityType="tintucmoinhatModel.profile" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="tintucmoinhatModel.news" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="tintucmoinhatModel.post" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="tintucmoinhatModel.news" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

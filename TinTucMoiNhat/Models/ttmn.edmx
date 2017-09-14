@@ -56,6 +56,7 @@
           <Property Name="status" Type="int" />
           <Property Name="loads" Type="int" />
           <Property Name="user_id" Type="bigint" />
+          <Property Name="parent_id" Type="bigint" />
         </EntityType>
         <EntityType Name="news_business">
           <Key>
@@ -210,8 +211,8 @@
           <EntitySet Name="notifications" EntityType="tintucmoinhatModel.notification" />
           <EntitySet Name="comments" EntityType="tintucmoinhatModel.comment" />
           <EntitySet Name="profiles" EntityType="tintucmoinhatModel.profile" />
-          <EntitySet Name="news" EntityType="tintucmoinhatModel.news" />
           <EntitySet Name="posts" EntityType="tintucmoinhatModel.post" />
+          <EntitySet Name="news" EntityType="tintucmoinhatModel.news" />
         </EntityContainer>
         <EntityType Name="page">
           <Key>
@@ -344,26 +345,6 @@
           <Property Name="points" Type="Int32" />
           <Property Name="rate" Type="Int32" />
         </EntityType>
-        <EntityType Name="news">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
-          <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
-          <Property Name="link" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
-          <Property Name="cat_id" Type="Int32" />
-          <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="date_time" Type="DateTime" Precision="3" />
-          <Property Name="time" Type="Time" Precision="7" />
-          <Property Name="date_id" Type="Int32" />
-          <Property Name="pdf" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="loads" Type="Int32" />
-          <Property Name="user_id" Type="Int64" />
-        </EntityType>
         <EntityType Name="post">
           <Key>
             <PropertyRef Name="id" />
@@ -388,6 +369,27 @@
           <Property Name="full_link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="loads" Type="Int32" />
           <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
+          <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="full_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="551" FixedLength="false" Unicode="true" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="time" Type="Time" Precision="7" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="pdf" Type="String" MaxLength="301" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="loads" Type="Int32" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="parent_id" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -536,27 +538,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="tintucmoinhatModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="loads" ColumnName="loads" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="pdf" ColumnName="pdf" />
-                <ScalarProperty Name="date_id" ColumnName="date_id" />
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="date_time" ColumnName="date_time" />
-                <ScalarProperty Name="keywords" ColumnName="keywords" />
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="full_content" ColumnName="full_content" />
-                <ScalarProperty Name="des" ColumnName="des" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="posts">
             <EntityTypeMapping TypeName="tintucmoinhatModel.post">
               <MappingFragment StoreEntitySet="posts">
@@ -579,6 +560,28 @@
                 <ScalarProperty Name="post_id" ColumnName="post_id" />
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="loads" ColumnName="loads" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="pdf" ColumnName="pdf" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="full_content" ColumnName="full_content" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

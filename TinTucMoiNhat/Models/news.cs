@@ -29,5 +29,6 @@ namespace TinTucMoiNhat.Models
         public Nullable<int> status { get; set; }
         public Nullable<int> loads { get; set; }
         public Nullable<long> user_id { get; set; }
+        public Nullable<long> parent_id { get; set; }
     }
 }

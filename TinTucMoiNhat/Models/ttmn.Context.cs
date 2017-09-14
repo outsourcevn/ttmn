@@ -35,7 +35,7 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<notification> notifications { get; set; }
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<profile> profiles { get; set; }
-        public virtual DbSet<news> news { get; set; }
         public virtual DbSet<post> posts { get; set; }
+        public virtual DbSet<news> news { get; set; }
     }
 }

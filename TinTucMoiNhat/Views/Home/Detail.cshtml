@@ -54,7 +54,7 @@
     <div class="row">
         <div class=" col-sm-12 col-md-10 col-lg-9" style="background:#ffffff;border:solid 1px #ffd800;margin:5px 5px 5px 5px;z-index:1001;">
             <div class="row">
-                <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; ">
+                <div class="leftbar_content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 50px; padding-left: 8px; " id="allthefullcontent">
                     @if (Model.status == 0)
                     {
                         <h1>@Model.name</h1>
@@ -124,6 +124,18 @@
         <div class="col-sm-6 col-md-2 col-lg-2">
             <div class="row">
                 <div class="middlebar_content">
+                    @if (ViewBag.news_topic != null) { 
+                    <h2 class="yellow_bg">Cùng chủ đề</h2>
+                    <div class="middlebar_content_inner wow fadeInUp">
+                        <ul class="middlebar_nav">
+                            @foreach (var item in ViewBag.news_topic)
+                            {
+                                var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
+                                <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="" style="width:70px;height:70px;"></a><a class="mbar_title" href="@link">@item.name</a> </li>
+                            }
+                        </ul>
+                    </div>
+                    }
                     <h2 class="yellow_bg">Tin liên quan</h2>
                     <div class="middlebar_content_inner wow fadeInUp">
                         <ul class="middlebar_nav">
@@ -207,7 +219,7 @@
 </div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
-    $('a[href^="http"]').attr('rel', 'nofollow');
+    $('#allthefullcontent a[href^="http"]').attr('rel', 'nofollow');
 </script>
 <script>
     //alert($(window).width());
