@@ -111,7 +111,7 @@
                 |
                 @Html.ActionLink("Sửa","Edit", new { id = item.id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                
+                <button value="Cập nhât nội dung" onclick="update(@item.id);">Cập nhât nội dung</button>                
             </td>
         </tr>
     }
@@ -124,6 +124,19 @@
             data: { id: id, status:status},
             success: function (rs) {
                 if (rs == '1') {
+                    alert("Cập nhật thành công!");
+                } else {
+                    alert("Cập nhật thất bại");
+                }
+            }
+        });
+    }
+    function update(id) {
+        $.ajax({
+            url: "/Home/updateSingleNews", type: 'get',
+            data: { id: id},
+            success: function (rs) {
+                if (rs == 'ok') {
                     alert("Cập nhật thành công!");
                 } else {
                     alert("Cập nhật thất bại");

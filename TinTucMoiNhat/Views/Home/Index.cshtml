@@ -209,9 +209,10 @@
 <link href="/Content/new/owl-carousel/owl.carousel.css" rel="stylesheet">
 <link rel="stylesheet" href="/Content/new/font-awesome-4.4.0/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/Content/new/css/style.css">
+<script src="/Content/new/owl-carousel/owl.carousel.js"></script>
 @*<section id="contentbody" style="padding: 15px 0 22px;">*@
     <div class="container">
-        <div id="owl-slide" class="owl-carousel" style="display:block;">
+        <div id="owl-slide" class="owl-carousel" style="display:none;">
             @foreach (var item in Model)
             {
                 var link = "/" + TinTucMoiNhat.Config.getCatName(item.cat_id) + "/" + TinTucMoiNhat.Config.unicodeToNoMark(item.name) + "-" + item.id;
@@ -237,8 +238,9 @@
         </div>
     </div>
 @*</section>*@
-<script src="/Content/new/owl-carousel/owl.carousel.js"></script>
+
 <script>
+    setTimeout(function () { $("#owl-slide").show(); }, 2000);
     $(document).ready(function () {
         $("#owl-slide").owlCarousel({
             autoPlay: 3000,

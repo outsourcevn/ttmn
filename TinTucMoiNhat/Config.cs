@@ -171,6 +171,7 @@ namespace TinTucMoiNhat
         }
         public static string unicodeToNoMark(string input)
         {
+            if (input == null) return "";
             input = input.ToLowerInvariant().Trim();
             if (input == null) return "";
             string noMark = "a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,e,e,e,e,e,e,e,e,e,e,e,e,u,u,u,u,u,u,u,u,u,u,u,u,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,i,i,i,i,i,i,y,y,y,y,y,y,d,A,A,E,U,O,O,D";
@@ -236,6 +237,9 @@ namespace TinTucMoiNhat
                 case 666:
                     val = "ban-doc-viet";
                     break;
+                case 888:
+                    val = "doanh-nghiep-viet";
+                    break;
             }
             return val;
         }
@@ -282,6 +286,9 @@ namespace TinTucMoiNhat
                     break;
                 case 666:
                     val = "Bạn đọc viết";
+                    break;
+                case 888:
+                    val = "Doanh nghiệp viết";
                     break;
             }
             return val;
