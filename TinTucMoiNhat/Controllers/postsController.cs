@@ -22,7 +22,7 @@ namespace TinTucMoiNhat.Controllers
             int pageNumber = (pg ?? 1);
             int date_id = Config.datetimeidByDay(-1);
             if (keyword != "") date_id = Config.datetimeidByDay(-30);
-            var p = (from q in db.posts where q.date_id >= date_id && q.status== status && (q.message.Contains(keyword)) select q).OrderByDescending(o => o.date_post).ToList();
+            var p = (from q in db.posts where q.date_id >= date_id && q.status== status && (q.message.Contains(keyword) || q.id.ToString().Contains(keyword)) select q).OrderByDescending(o => o.date_post).ToList();
             ViewBag.keyword = keyword;
             ViewBag.pg = pg;
             return View(p.ToPagedList(pageNumber, pageSize));

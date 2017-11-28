@@ -37,5 +37,6 @@ namespace TinTucMoiNhat.Models
         public virtual DbSet<profile> profiles { get; set; }
         public virtual DbSet<post> posts { get; set; }
         public virtual DbSet<news> news { get; set; }
+        public virtual DbSet<chatbot> chatbots { get; set; }
     }
 }

@@ -14,6 +14,18 @@
           <Property Name="url" Type="nvarchar" MaxLength="255" />
           <Property Name="id_channel" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="chatbot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="des" Type="ntext" />
+          <Property Name="link1" Type="nvarchar" MaxLength="501" />
+          <Property Name="link2" Type="nvarchar" MaxLength="501" />
+          <Property Name="date_id" Type="int" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="source" Type="int" />
+        </EntityType>
         <EntityType Name="comments">
           <Key>
             <PropertyRef Name="id" />
@@ -184,6 +196,7 @@
         </EntityType>
         <EntityContainer Name="tintucmoinhatModelStoreContainer">
           <EntitySet Name="channel" EntityType="Self.channel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chatbot" EntityType="Self.chatbot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
@@ -213,6 +226,7 @@
           <EntitySet Name="profiles" EntityType="tintucmoinhatModel.profile" />
           <EntitySet Name="posts" EntityType="tintucmoinhatModel.post" />
           <EntitySet Name="news" EntityType="tintucmoinhatModel.news" />
+          <EntitySet Name="chatbots" EntityType="tintucmoinhatModel.chatbot" />
         </EntityContainer>
         <EntityType Name="page">
           <Key>
@@ -390,6 +404,18 @@
           <Property Name="loads" Type="Int32" />
           <Property Name="user_id" Type="Int64" />
           <Property Name="parent_id" Type="Int64" />
+        </EntityType>
+        <EntityType Name="chatbot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="link1" Type="String" MaxLength="501" FixedLength="false" Unicode="true" />
+          <Property Name="link2" Type="String" MaxLength="501" FixedLength="false" Unicode="true" />
+          <Property Name="date_id" Type="Int32" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="source" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -582,6 +608,19 @@
                 <ScalarProperty Name="full_content" ColumnName="full_content" />
                 <ScalarProperty Name="des" ColumnName="des" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chatbots">
+            <EntityTypeMapping TypeName="tintucmoinhatModel.chatbot">
+              <MappingFragment StoreEntitySet="chatbot">
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="date_id" ColumnName="date_id" />
+                <ScalarProperty Name="link2" ColumnName="link2" />
+                <ScalarProperty Name="link1" ColumnName="link1" />
+                <ScalarProperty Name="des" ColumnName="des" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

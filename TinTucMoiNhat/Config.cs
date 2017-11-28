@@ -21,6 +21,7 @@ namespace TinTucMoiNhat
         public static bool isCrawlFacebookNews = false;
         public static bool isCrawlWeather = false;
         public static bool isCrawlTopic = false;
+        public static bool isCrawlHotTrends = false;
         public static tintucmoinhatEntities db = new tintucmoinhatEntities(); 
         public static string convertToDateTimeId(string d)
         {
