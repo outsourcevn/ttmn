@@ -66,8 +66,8 @@
                             <p>Người gửi link: @Config.getUserNameById(Model.user_id)</p>
                         }
                     }
-                    <h2>Quảng cáo</h2>
-                    <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;"><p style="padding:5px 5px 5px 5px;">Nhận thiết kế website, phần mềm, ứng dụng di động, marketing online(adword, seo)</p><p style="padding:5px 5px 5px 5px;">Phone:<a href="tel:0979776427" style="color:yellow;">0979776427</a>, Email vnnvh80@gmail.com</p></div>
+                    <h2>Phần mềm tự động lấy tin tức</h2>
+                    <div class="stuff_article_inner" style="background: none repeat scroll 0 0 #09c;color:#ffffff;">Nếu bài báo do robot tự động lấy tin này làm phiền bạn, xin liên hệ vnnvh80@gmail.com để gỡ bài</div>
                     @*<div style="text-align:center;">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <script>
@@ -96,34 +96,28 @@
             </div>*@
                     @if (Model.pdf != null)
                     {<p><span class="stuff_date"><a href="@Model.pdf"><img src="~/Content/images/pdf.png" style="width:32px;height:32px;"></a></span></p>}
-                    <iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
-                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>
-                    <div class="comments-container">
+                    @*<iframe src="https://www.facebook.com/plugins/like.php?href=@ViewBag.url&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=1930351307185969" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <div class="fb-comments" data-href="@ViewBag.url" data-numposts="15"></div>*@
+                    @*<div class="comments-container">
                         <h1>Bình Luận</h1>
                         <ul id="comments-list-@Model.id" class="comments-list">
                             @{Html.RenderAction("listCommentNews", new { id = Model.id });}
                         </ul>
-                    </div>
-                    <div class="widget-area no-padding blank">
+                    </div>*@
+                    @*<div class="widget-area no-padding blank">
                         <div class="status-upload">
                             <form>
-                                <textarea placeholder="Ý Kiến Của Bạn?" id="full_comment" class="form-control" style="width:100%;" rows="7"></textarea>
-                                @*<ul>
-                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
-                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
-                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
-                            <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
-                        </ul>*@
+                                <textarea placeholder="Ý Kiến Của Bạn?" id="full_comment" class="form-control" style="width:100%;" rows="7"></textarea>                                
                                 <button type="button" class="btn btn-success green" onclick="sendcomment(@Model.id);"><i class="fa fa-share"></i> Gửi </button>
                             </form>
                         </div><!-- Status Upload  -->
-                    </div><!-- Widget Area -->
+                    </div><!-- Widget Area -->*@
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-2 col-lg-2">
             <div class="row">
-                <div class="middlebar_content">
+                <div class="middlebar_content">                    
                     @if (ViewBag.news_topic != null) { 
                     <h2 class="yellow_bg">Cùng chủ đề</h2>
                     <div class="middlebar_content_inner wow fadeInUp">
@@ -145,7 +139,7 @@
                                 <li><a class="mbar_thubnail" href="@link"><img src="@item.image" alt="" style="width:70px;height:70px;"></a><a class="mbar_title" href="@link">@item.name</a> </li>
                             }
                         </ul>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -181,7 +175,7 @@
         </div>*@
     </div>
 </div>
-<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
+@*<script src='https://www.google.com/recaptcha/api.js?hl=vi'></script>
 <div class="row" style="width:75%;top:25%;left:12%;background:#f4f4f4;color:#000000;position:fixed;padding-left:5px;padding-right:5px;text-align:left;display:none;z-index:1002;" id="dv_user_comment">
     <span onclick="$('#dv_user_comment').hide();" style="display:block;position:absolute;float:right;cursor:pointer;width:100%;">X</span>
     <div style="width:100%;text-align:center;color:#000000;" class="standardcss"><h2 id="driverphone">Gửi bình luận</h2></div>
@@ -216,7 +210,7 @@
         </form>
     </div>
     
-</div>
+</div>*@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
     $('#allthefullcontent a[href^="http"]').attr('rel', 'nofollow');
